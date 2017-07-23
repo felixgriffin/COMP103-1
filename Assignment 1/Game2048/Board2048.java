@@ -30,7 +30,7 @@ public class Board2048 {
      */
     public boolean hasReachedTarget() {
         /*# YOUR CODE HERE */
-        
+        return true;
     }
 
     /** Return whether the game is over (true) or not (false). 
@@ -40,7 +40,7 @@ public class Board2048 {
      */
     public boolean isGameOver() {
         /*# YOUR CODE HERE */
-        
+        return true;
     }
 
     /** Return the number of empty tiles. 
@@ -48,7 +48,7 @@ public class Board2048 {
      */
     private int numEmptyTiles() {
         /*# YOUR CODE HERE */
-        
+        return 0;
     }
 
     /** Insert a random number (either 2 or 4) at a randon empty tile.

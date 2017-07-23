@@ -3,9 +3,9 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP 103 - 2017T2, Assignment 1
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 import ecs100.*;
@@ -29,7 +29,7 @@ public class Board16 {
      */
     public boolean hasReachedTarget() {
         /*# YOUR CODE HERE */
-        
+        return true;
     }
 
     /** Return whether the game is over (true) or not (false) 
@@ -40,7 +40,7 @@ public class Board16 {
      */
     public boolean isGameOver() {
         /*# YOUR CODE HERE */
-        
+        return true;
     }
 
     /** Return the number of empty tiles 
@@ -49,7 +49,7 @@ public class Board16 {
      */
     private int numEmptyTiles() {
         /*# YOUR CODE HERE */
-        
+        return 0;
     }
 
     /** Insert a random number (either 2 or 4) at a randon empty tile.
