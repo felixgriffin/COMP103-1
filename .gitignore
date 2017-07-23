@@ -1,0 +1,5 @@
+*.class
+/.idea
+.npm-debug.log
+/.eclipse
+/out
