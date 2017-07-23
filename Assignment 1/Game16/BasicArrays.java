@@ -47,10 +47,27 @@ public class BasicArrays {
         int rows = UI.askInt("How many rows? ");
         int cols = UI.askInt("How many columns? ");
         int box [][] = new int [rows][cols];
-        UI.setColor(Color.black);
+
+        int count=1;
+        for(int i=0; i<box.length; i++){
+            for(int j=0; j<box[i].length; j++){
+                box[i][j]=count;
+                count++;
+                Trace.println("("+i+ ", "+j+") => " + box[i][j]);
+            }
+        }
+
         for (int i= 0; i<box.length; i++){
             for(int j = 0; j<box[i].length; j++){
-                UI.drawRect(this.left+(this.size*j), this.top+size*i, this.size, this.size);
+                UI.setColor(this.getColor(box.length*box[i].length, box[i][j]));
+                UI.fillRect(this.left+(this.size*j), this.top+size*i, this.size, this.size);
+            }
+        }
+
+        UI.setColor(Color.white);
+        for(int i=0; i<box.length; i++){
+            for(int j=0; j<box[i].length; j++){
+                UI.drawString(box[i][j]+"", this.left+(this.size*j)+(this.size/2), (this.top+size*i)+(this.size/2));
             }
         }
     }
