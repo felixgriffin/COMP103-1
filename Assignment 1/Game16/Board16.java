@@ -27,9 +27,13 @@ public class Board16 {
     /** Return whether (at least) the magic target number has been achieved  
      *  [CORE]
      */
-    public boolean hasReachedTarget() {
-        /*# YOUR CODE HERE */
-        return true;
+    public boolean hasReachedTarget(){
+        for (int i =0; i<board.length; i++) {
+            if (board[i]==16){
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Return whether the game is over (true) or not (false) 
@@ -39,7 +43,11 @@ public class Board16 {
      *  [CORE]
      */
     public boolean isGameOver() {
-        /*# YOUR CODE HERE */
+        for (int i=0; i<board.length; i++){
+            if (board[i]==0){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -48,18 +56,33 @@ public class Board16 {
      *  [CORE]
      */
     private int numEmptyTiles() {
-        /*# YOUR CODE HERE */
-        return 0;
+        int count=0;
+        for (int i=0; i<board.length; i++){
+           if (board[i]==0){
+               count++;
+           }
+        }
+        return count;
     }
 
-    /** Insert a random number (either 2 or 4) at a randon empty tile.
+    /** Insert a random number (either 2 or 4) at a random empty tile.
      *  Note that 7 out of 10 times the number should be 2.
      *  An empty tile is one which holds the value 0.
      *  [CORE]
      */
     public void insertRandomTile() {
-        /*# YOUR CODE HERE */
-        
+        for (int i=0; i<board.length; i++){
+            if(board[i]==0){
+                int randomNum = (int)Math.random()*10;
+                if (randomNum<7){
+                    randomNum=4;
+                }
+                else {
+                    randomNum=2;
+                }
+                board[i]=randomNum;
+            }
+        }
     }
 
     /** Move the tiles left. 
