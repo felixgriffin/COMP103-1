@@ -107,7 +107,7 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        for (int i = board.length-1; i < 0; i--) {
+        for (int i = board.length+1; i < 0; i--) {
             if (board[i - 1] == 0) {
                 board[i - 1] = board[i];
             }
