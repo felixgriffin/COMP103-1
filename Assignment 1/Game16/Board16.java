@@ -74,7 +74,7 @@ public class Board16 {
         int randomTile = (int)Math.random()*board.length;
         if(board[randomTile]==0){
             int randomNumber = (int)Math.random()*10;
-            if(randomNumber<7){
+            if(randomNumber>7){
                 randomNumber=4;
             }
             else {
