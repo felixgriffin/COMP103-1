@@ -26,8 +26,8 @@
       <file leaf-file-name="Board16.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment 1/Game16/Board16.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="72" column="36" lean-forward="true" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+            <state relative-caret-position="306">
+              <caret line="87" column="39" lean-forward="false" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -548,12 +548,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1500933697898</updated>
-      <workItem from="1500933700716" duration="2354000" />
+      <workItem from="1500933700716" duration="2819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2354000" />
+    <option name="totallyTimeSpent" value="2819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -623,8 +623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assignment 1/Game16/Board16.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="72" column="36" lean-forward="true" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+        <state relative-caret-position="306">
+          <caret line="87" column="39" lean-forward="false" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
           <folding />
         </state>
       </provider>
