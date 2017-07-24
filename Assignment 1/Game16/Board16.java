@@ -107,13 +107,14 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        for (int i=board.length; i<0; i--){
-            if(board[i-1]==0){
-                board[i-1] = board [i];
+        for (int i = board.length-1; i < 0; i--) {
+            if (board[i - 1] == 0) {
+                board[i - 1] = board[i];
             }
-            if(board[i-1] == board [i]){
-                board [i-1] = 2* board [i-1];
-                board [i] = 0;
+            if (board[i - 1] == board[i]) {
+                board[i - 1] = 2 * board[i - 1];
+                board[i] = 0;
+            }
         }
     }
 
@@ -134,8 +135,16 @@ public class Board16 {
      * [COMPLETION]
      */
     public void right() {
-        /*# YOUR CODE HERE */
-        
+        for(int i=0; i<board.length-1; i++){
+            if(board[i+1] ==0){
+                board[i+1] = board [i];
+                board[i]=0;
+            }
+            if(board[i+1]==board[i]){
+                board[i+1]=2*board[i+1];
+                board[i]=0;
+            }
+        }
     }
 
     public String toString() {
