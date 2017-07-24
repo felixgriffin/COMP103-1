@@ -107,8 +107,14 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        /*# YOUR CODE HERE */
-        
+        for (int i=board.length; i<0; i--){
+            if(board[i-1]==0){
+                board[i-1] = board [i];
+            }
+            if(board[i-1] == board [i]){
+                board [i-1] = 2* board [i-1];
+                board [i] = 0;
+        }
     }
 
     /** Move the tiles right. 
