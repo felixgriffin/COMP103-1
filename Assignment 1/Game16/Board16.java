@@ -82,7 +82,6 @@ public class Board16 {
             }
             board[randomTile]=randomNumber;
         }
-
     }
 
     /** Move the tiles left. 
@@ -108,9 +107,11 @@ public class Board16 {
             if (board[i - 1] == 0) {
                 board[i - 1] = board[i];
             }
-            if (board[i - 1] == board[i]) {
-                board[i - 1] = 2 * board[i - 1];
-                board[i] = 0;
+        }
+        for(int j=board.length-1; j>0; j--) {
+            if (board[j - 1] == board[j]) {
+                board[j - 1] = 2 * board[j - 1];
+                board[j] = 0;
             }
         }
     }
@@ -137,9 +138,11 @@ public class Board16 {
                 board[i+1] = board [i];
                 board[i]=0;
             }
-            if(board[i+1]==board[i]){
-                board[i+1]=2*board[i+1];
-                board[i]=0;
+        }
+        for(int j=0; j<board.length-1; j++){
+            if(board[j+1]==board[j]) {
+                board[j + 1] = 2 * board[j + 1];
+                board[j] = 0;
             }
         }
     }
