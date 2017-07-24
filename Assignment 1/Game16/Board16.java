@@ -71,21 +71,18 @@ public class Board16 {
      *  [CORE]
      */
     public void insertRandomTile() {
-        int count=0;
-        for (int i=0; i<board.length; i++){
-            if (board[i]==0){
-                count++;
+        int randomTile = (int)Math.random()*board.length;
+        if(board[randomTile]==0){
+            int randomNumber = (int)Math.random()*10;
+            if(randomNumber<7){
+                randomNumber=4;
             }
+            else {
+                randomNumber=2;
+            }
+            board[randomTile]=randomNumber;
         }
-        int randomTile = (int)Math.random()*count;
-        int randomNumber = (int)Math.random()*10;
-        if(randomNumber<7){
-            randomNumber=4;
-        }
-        else {
-            randomNumber=2;
-        }
-        board[randomTile]=randomNumber;
+
     }
 
     /** Move the tiles left. 
@@ -107,7 +104,7 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        for (int i = board.length+1; i < 0; i--) {
+        for (int i = board.length-1; i > 0; i--) {
             if (board[i - 1] == 0) {
                 board[i - 1] = board[i];
             }
