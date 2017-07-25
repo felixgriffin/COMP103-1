@@ -27,7 +27,7 @@ public class Board16 {
     /** Return whether (at least) the magic target number has been achieved  
      *  [CORE]
      */
-    public boolean hasReachedTarget(){
+    public boolean hasReachedTarget(){ //If there is a spot in the array with the value 16, the game is over.
         for (int i =0; i<board.length; i++) {
             if (board[i]==16){
                 return true;
@@ -42,7 +42,7 @@ public class Board16 {
      *  as they could be compressed to fewer tiles by a player move.
      *  [CORE]
      */
-    public boolean isGameOver() {
+    public boolean isGameOver(){ //The game is over unless an empty spot (a 0) in the array can be found.
         for (int i=0; i<board.length; i++){
             if (board[i]==0){
                 return false;
@@ -55,7 +55,7 @@ public class Board16 {
      *  An empty tile is one which holds the value 0
      *  [CORE]
      */
-    private int numEmptyTiles() {
+    private int numEmptyTiles(){ //Returns amount of places in array with a 0 (an empty spot).
         int count=0;
         for (int i=0; i<board.length; i++){
            if (board[i]==0){
@@ -65,23 +65,35 @@ public class Board16 {
         return count;
     }
 
+    public int randomNumber(){ //For choosing whether the new tile should be a 2 or a 4.
+        double randNum = Math.random();
+        if(randNum>0.7){
+            return 4;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    public int randomTile(){
+        int randTile = (int)(Math.random()*5);
+        UI.println(randTile);
+        return randTile;
+    }
+
     /** Insert a random number (either 2 or 4) at a random empty tile.
      *  Note that 7 out of 10 times the number should be 2.
      *  An empty tile is one which holds the value 0.
      *  [CORE]
      */
     public void insertRandomTile() {
-        int [] emptyTiles = new int[numEmptyTiles()];
-        for(int i =0; i<board.length; i++){
-            if(board[i]==0){
-                for(int j=0; j<emptyTiles.length; j++){
-                    emptyTiles[j]=board[i];
+            boolean b=false;
+            while (b==false){
+                if(board[this.randomTile()]==0){
+                    board[this.randomTile()]=this.randomNumber();
                 }
+                b=true;
             }
-        }
-        int randomTile = (int) Math.random()*(emptyTiles.length);
-        int randomIndex = emptyTiles[randomTile];
-        board[randomIndex] = 2;
     }
 
     /** Move the tiles left. 
@@ -103,22 +115,16 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        for (int i = board.length-1; i > 0; i--) {
-            if (board[i - 1] == 0) {
-                board[i - 1] = board[i];
+        for(int i=board.length-1; i>0; i--){
+            if(board[i-1]==0){
+                board[i-1]=board[i];
                 board[i]=0;
             }
-            else{
-
-            }
         }
-        for(int j=board.length-1; j>0; j--){
-            if(board[j-1]==board[j]){
-                board[j-1]=2*(board[j-1]);
-                board[j]=0;
-            }
-            else{
-
+        for(int j=0; j<board.length-1; j++){
+            if(board[j]==board[j+1]){
+                board[j]=board[j]*2;
+                board[j+1]=0;
             }
         }
     }
@@ -141,21 +147,15 @@ public class Board16 {
      */
     public void right() {
         for(int i=0; i<board.length-1; i++){
-            if(board[i+1] ==0){
-                board[i+1] = board [i];
+            if(board[i+1]==0){
+                board[i+1]=board[i];
                 board[i]=0;
             }
-            else{
-
-            }
         }
-        for(int j=0; j<board.length-1; j++){
-            if(board[j+1]==(board[j])){
-                board[j+1]=2*(board[j+1]);
-                board[j]=0;
-            }
-            else{
-
+        for(int j=board.length-1; j>0; j--){
+            if(board[j]==board[j-1]){
+                board[j]=board[j]*2;
+                board[j-1]=0;
             }
         }
     }

@@ -24,21 +24,20 @@ public class BasicArrays {
     }
 
     private Color getColor(int numItems, int value){
-        return new Color ((255/numItems)*value);
-    }
+        return new Color ((255/numItems)*value);} //The included code for getting colours for boxes.
 
     public void doVerticalLine(){
         int sizeOfArray = UI.askInt("Size of Array");
-        int list [] = new int [sizeOfArray];
+        int list [] = new int [sizeOfArray]; //Make an array of the size the user specifies.
         UI.println(list.length);
         for(int i=0; i<list.length; i++){
-            list[i]=list.length-i;
+            list[i]=list.length-i; //Giving the spaces in the array a number starting from highest one and descending.
         }
         for(int j=0; j<list.length; j++){
             UI.setColor(this.getColor(list.length, list[j]));
-            UI.fillRect(this.left, this.top+this.size*j , this.size, this.size);
+            UI.fillRect(this.left, this.top+this.size*j , this.size, this.size); //Fill a rectangle with the colour from the included code.
             UI.setColor(Color.white);
-            UI.drawString(list[j]+"", this.left + (size/2), (this.top+this.size*(j+1))-20);
+            UI.drawString(list[j]+"", this.left + (size/2), (this.top+this.size*(j+1))-20); //Draw the number in the box in white.
             UI.println("j: " + j);
         }
     }
@@ -51,23 +50,23 @@ public class BasicArrays {
         int count=1;
         for(int i=0; i<box.length; i++){
             for(int j=0; j<box[i].length; j++){
-                box[i][j]=count;
+                box[i][j]=count; //Give each box a number than increases from 1.
                 count++;
-                Trace.println("("+i+ ", "+j+") => " + box[i][j]);
+                Trace.println("("+i+ ", "+j+") => " + box[i][j]); //For debugging the values im getting.
             }
         }
 
         for (int i= 0; i<box.length; i++){
             for(int j = 0; j<box[i].length; j++){
                 UI.setColor(this.getColor(box.length*box[i].length, box[i][j]));
-                UI.fillRect(this.left+(this.size*j), this.top+size*i, this.size, this.size);
+                UI.fillRect(this.left+(this.size*j), this.top+size*i, this.size, this.size); //Fill a rectangle with the colour from the included code.
             }
         }
 
         UI.setColor(Color.white);
         for(int i=0; i<box.length; i++){
             for(int j=0; j<box[i].length; j++){
-                UI.drawString(box[i][j]+"", this.left+(this.size*j)+(this.size/2), (this.top+size*i)+(this.size/2));
+                UI.drawString(box[i][j]+"", this.left+(this.size*j)+(this.size/2), (this.top+size*i)+(this.size/2)); //Draw the number in the box in white.
             }
         }
     }
