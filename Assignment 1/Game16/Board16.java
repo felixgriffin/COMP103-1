@@ -76,7 +76,7 @@ public class Board16 {
     }
 
     public int randomTile(){
-        int randTile = (int)(Math.random()*5);
+        int randTile = (int)(Math.random()*board.length);
         UI.println(randTile);
         return randTile;
     }
