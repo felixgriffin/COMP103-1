@@ -72,7 +72,12 @@ public class Board16 {
      *  [CORE]
      */
     public void insertRandomTile() {
-        board[3]=2;
+        for(int i=0; i<board.length; i++){
+            int rand = (int) (Math.random()*board.length);
+            if(board[rand]==0){
+                board[rand]=2;
+            }
+        }
     }
 
     /** Move the tiles left. 
@@ -116,6 +121,12 @@ public class Board16 {
                 count++;
             }
         }
+        for(int j=0; j<board.length-1; j++){
+            if(board[j]==board[j+1]){
+                board[j]=board[j]*2;
+                board[j+1]=0;
+            }
+        }
     }
 
     /** Move the tiles right. 
@@ -155,6 +166,12 @@ public class Board16 {
                     board[i]=0;
                 }
                 count--;
+            }
+        }
+        for(int j=board.length-1; j>0; j--){
+            if(board[j]==board[j-1]){
+                board[j]=board[j]*2;
+                board[j-1]=0;
             }
         }
     }
