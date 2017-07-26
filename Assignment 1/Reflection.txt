@@ -14,11 +14,23 @@ you went about exploring further, learning about the issue to your own
 satisfaction. If understanding it remains a problem for you, outline 
 what your next step will be in sorting this out.
 
-So far in COMP103 we have covered collections and their interfaces (and their implementations). I now see how these ArrayLists that I have been using for so long relate to lists and to collections. We have also looked at primitive types like ints and how you cant treat them like objects.
+So far in COMP103 we have covered collections and their interfaces 
+(and their implementations). I now see how these ArrayLists that I have 
+been using for so long relate to lists and to collections. We have also 
+looked at primitive types like ints and how you cant treat them like objects.
 
-I struggled with this assignment and enlisted help from a friend and tutors (commented in the code where there ideas were used). The algorithms for moving all tiles to the left or right made intuitive sense but when implemented in code didn't work like I wanted them to although the merging two equal tiles into one was fine. I got help from the tutors on creating a new tile where I have never been exposed to a "do while" loop which meant I could keep trying new tiles until I found a blank one where I would insert a new tile(2 or a 4).
+I struggled with this assignment and enlisted help from a friend and tutors 
+(commented in the code where there ideas were used). The algorithms for 
+moving all tiles to the left or right made intuitive sense but when implemented 
+in code didn't work like I wanted them to although the merging two equal tiles 
+into one was fine. I got help from the tutors on creating a new tile where I have
+never been exposed to a "do while" loop which meant I could keep trying new 
+tiles until I found a blank one where I would insert a new tile(2 or a 4).
 
-My next step in getting comfortable with Arrays and primitive types is to look at the model answers when they are released and look at how the full version of 2048 and the spiral thing were done because I couldn't even write pseudocode for those parts.
+My next step in getting comfortable with Arrays and primitive types is to look 
+at the model answers when they are released and look at how the full version 
+of 2048 and the spiral thing were done because I couldn't even write pseudocode 
+for those parts.
 
-	"Do-while" idea from 100-level workshop tutors
-	Count+increment strategy for left/right methods from Ben Marshall 300375197
+"Do-while" idea from 100-level workshop tutors
+Count+increment strategy for left/right methods from Ben Marshall 300375197
