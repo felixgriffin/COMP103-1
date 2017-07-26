@@ -71,6 +71,7 @@ public class Game16 {
 
         // Insert a new random tile
         UI.sleep(20);
+
         board.insertRandomTile();
         board.redraw();
 

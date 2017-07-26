@@ -72,13 +72,12 @@ public class Board16 {
      *  [CORE]
      */
     public void insertRandomTile() {
-        for(int i=0; i<board.length; i++){
-            int rand = (int) (Math.random()*board.length);
-            if(board[rand]==0){
-                board[rand]=2;
-            }
-            break;
-        }
+        int rand;
+            do {
+                rand = (int) (Math.random()*board.length);
+            } while(board[rand] != 0);
+
+            board[rand] = 2;
     }
 
     /** Move the tiles left. 
