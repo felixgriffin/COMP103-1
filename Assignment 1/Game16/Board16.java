@@ -82,9 +82,18 @@ public class Board16 {
         int rand;
             do {
                 rand = (int) (Math.random()*board.length);
-            } while(board[rand] != 0);
+            }
+            while(board[rand] != 0);
 
-            board[rand] = 2;
+            double rv = Math.random();
+            int paul;
+            if(rv<=0.7){
+                paul=2;
+            }
+            else{
+                paul=4;
+            }
+            board[rand] = paul; // ;)
     }
 
     /** Move the tiles left. 
