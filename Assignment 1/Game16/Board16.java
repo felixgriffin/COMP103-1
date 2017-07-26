@@ -77,6 +77,7 @@ public class Board16 {
             if(board[rand]==0){
                 board[rand]=2;
             }
+            break;
         }
     }
 
@@ -112,7 +113,7 @@ public class Board16 {
             }
         }*/
         int count = 0;
-        for (int i = 0; i < board.length - 1; i++) {
+        for (int i = 0; i < board.length; i++) {
             if (!(board[i]==0)) {
                 board[count]=board[i];
                 if(!(i==count)){
