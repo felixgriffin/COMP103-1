@@ -47,6 +47,13 @@ public class Board16 {
             if (board[i]==0){
                 return false;
             }
+            else{
+                for(int j=0; j<board.length-1; j++){
+                    if(board[j]==board[j+1]){
+                        return false;
+                    }
+                }
+            }
         }
         return true;
     }

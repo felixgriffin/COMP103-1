@@ -17,6 +17,7 @@ public class BasicArrays {
     public BasicArrays(){
         UI.addButton("Vertical Line", this::doVerticalLine);
         UI.addButton("Box", this::doBox);
+        UI.addButton("Spiral", this::doSpiral);
         //UI.addButton("Vertical Line", this::doSpiral);
         UI.addButton("Clear", this::doClear);
         UI.addButton("Quit", UI::quit);
@@ -67,6 +68,21 @@ public class BasicArrays {
         for(int i=0; i<box.length; i++){
             for(int j=0; j<box[i].length; j++){
                 UI.drawString(box[i][j]+"", this.left+(this.size*j)+(this.size/2), (this.top+size*i)+(this.size/2)); //Draw the number in the box in white.
+            }
+        }
+    }
+
+    public void doSpiral(){
+        int rows = UI.askInt("How many rows? ");
+        int cols = UI.askInt("How many columns? ");
+        int box [][] = new int [rows][cols];
+
+        int count=1;
+        for(int i=0; i<box.length; i++){
+            for(int j=0; j<box[i].length; j++){
+                box[i][j]=count; //Give each box a number than increases from 1.
+                count++;
+                Trace.println("("+i+ ", "+j+") => " + box[i][j]); //For debugging the values im getting.
             }
         }
     }
