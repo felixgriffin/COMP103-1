@@ -1,5 +1,6 @@
 *.class
 /.idea
+.idea
 .npm-debug.log
 /.eclipse
 /out
