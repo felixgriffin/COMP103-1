@@ -42,15 +42,16 @@ public class Board16 {
      *  as they could be compressed to fewer tiles by a player move.
      *  [CORE]
      */
-    public boolean isGameOver(){ //The game is over unless an empty spot (a 0) in the array can be found.
+    public boolean isGameOver(){
+
         for (int i=0; i<board.length; i++){
             if (board[i]==0){
-                return false;
+                return false; //Game isn't over if there is an open tile.
             }
             else{
                 for(int j=0; j<board.length-1; j++){
                     if(board[j]==board[j+1]){
-                        return false;
+                        return false; //Game isn't over if there are two equal tiles that can merge.
                     }
                 }
             }
@@ -62,15 +63,16 @@ public class Board16 {
      *  An empty tile is one which holds the value 0
      *  [CORE]
      */
-    private int numEmptyTiles(){ //Returns amount of places in array with a 0 (an empty spot).
+    private int numEmptyTiles(){
         int count=0;
         for (int i=0; i<board.length; i++){
-           if (board[i]==0){
+           if (board[i]==0){ //Iterate over all tiles and return the amount of tiles with value 0 (empty).
                count++;
            }
         }
         return count;
     }
+
 
 
     /** Insert a random number (either 2 or 4) at a random empty tile.
@@ -79,22 +81,25 @@ public class Board16 {
      *  [CORE]
      */
     public void insertRandomTile() {
-        int rand;
+        int randomTile;
             do {
-                rand = (int) (Math.random()*board.length);
+                randomTile = (int)(Math.random()*board.length); //"Do-while" loop idea from tutors at 100-level workshop.
             }
-            while(board[rand] != 0);
+            while(board[randomTile] != 0);
 
             double rv = Math.random();
-            int paul;
+            int randomNumber;
             if(rv<=0.7){
-                paul=2;
+                randomNumber=2;
             }
             else{
-                paul=4;
+                randomNumber=4; //Should give a 2 70% of the time and a 4 the rest of the time.
             }
-            board[rand] = paul; // ;)
+            board[randomTile] = randomNumber;
     }
+
+    /* Got help from the tutors at the 100-level workshop that showed me the "do-while" loop and explained why it was the best
+        option in this case.*/
 
     /** Move the tiles left. 
       Each time two tiles with the same number touch, the numbers are added and the two tiles merge on 
@@ -127,6 +132,9 @@ public class Board16 {
                 board[j+1]=0;
             }
         }*/
+
+        //Old code was left in there to look at how I was approaching the algorithm before I got help.
+
         int count = 0;
         for (int i = 0; i < board.length; i++) {
             if (!(board[i]==0)) {
@@ -144,6 +152,9 @@ public class Board16 {
             }
         }
     }
+
+    /*Count increments at non-zero values so we know that when we set the board at the increment to the board at count
+     * that we are setting it in a blank tile. This idea was given to me from Ben Marshall 300375197.*/
 
     /** Move the tiles right. 
      * Each time 2 tiles with the same number touch, the numbers are added and the two tiles merge on 
@@ -191,6 +202,9 @@ public class Board16 {
             }
         }
     }
+
+    /*Count increments at non-zero values so we know that when we set the board at the increment to the board at count
+     * that we are setting it in a blank tile. This idea was given to me from Ben Marshall 300375197.*/
 
     public String toString() {
         String tiles = "";

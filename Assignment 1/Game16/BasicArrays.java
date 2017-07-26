@@ -85,6 +85,8 @@ public class BasicArrays {
                 Trace.println("("+i+ ", "+j+") => " + box[i][j]); //For debugging the values im getting.
             }
         }
+
+        //Not completed, had trouble thinking about this (even in pseudocode...)
     }
 
     public void doClear(){
