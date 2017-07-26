@@ -65,21 +65,6 @@ public class Board16 {
         return count;
     }
 
-    public int randomNumber(){ //For choosing whether the new tile should be a 2 or a 4.
-        double randNum = Math.random();
-        if(randNum>0.7){
-            return 4;
-        }
-        else{
-            return 2;
-        }
-    }
-
-    public int randomTile(){
-        int randTile = (int)(Math.random()*board.length);
-        UI.println(randTile);
-        return randTile;
-    }
 
     /** Insert a random number (either 2 or 4) at a random empty tile.
      *  Note that 7 out of 10 times the number should be 2.
@@ -87,13 +72,7 @@ public class Board16 {
      *  [CORE]
      */
     public void insertRandomTile() {
-            boolean b=false;
-            while (b==false){
-                if(board[this.randomTile()]==0){
-                    board[this.randomTile()]=this.randomNumber();
-                }
-                b=true;
-            }
+        board[3]=2;
     }
 
     /** Move the tiles left. 
@@ -115,7 +94,7 @@ public class Board16 {
      * [COMPLETION]
      */
     public void left() {
-        for(int i=board.length-1; i>0; i--){
+        /*for(int i=board.length-1; i>0; i--){
             if(board[i-1]==0){
                 board[i-1]=board[i];
                 board[i]=0;
@@ -125,6 +104,16 @@ public class Board16 {
             if(board[j]==board[j+1]){
                 board[j]=board[j]*2;
                 board[j+1]=0;
+            }
+        }*/
+        int count = 0;
+        for (int i = 0; i < board.length - 1; i++) {
+            if (!(board[i]==0)) {
+                board[count]=board[i];
+                if(!(i==count)){
+                    board[i]=0;
+                }
+                count++;
             }
         }
     }
@@ -146,7 +135,7 @@ public class Board16 {
      * [COMPLETION]
      */
     public void right() {
-        for(int i=0; i<board.length-1; i++){
+        /*for(int i=0; i<board.length-1; i++){
             if(board[i+1]==0){
                 board[i+1]=board[i];
                 board[i]=0;
@@ -156,6 +145,16 @@ public class Board16 {
             if(board[j]==board[j-1]){
                 board[j]=board[j]*2;
                 board[j-1]=0;
+            }
+        }*/
+        int count = board.length-1;
+        for (int i = board.length-1; i>=0; i--) {
+            if (!(board[i]==0)) {
+                board[count]=board[i];
+                if(!(i==count)){
+                    board[i]=0;
+                }
+                count--;
             }
         }
     }
