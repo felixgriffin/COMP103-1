@@ -3,9 +3,9 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP 103 - 2017T2, Assignment 1
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 import ecs100.*;
@@ -29,8 +29,14 @@ public class Board2048 {
     /** Return whether (at least) the magic target number has been achieved.  
      */
     public boolean hasReachedTarget() {
-        /*# YOUR CODE HERE */
-        return true;
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[i].length; j++){
+                if(board[i][j]==2048){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /** Return whether the game is over (true) or not (false). 
@@ -39,7 +45,13 @@ public class Board2048 {
      *  as they could be compressed to fewer tiles by a player move.
      */
     public boolean isGameOver() {
-        /*# YOUR CODE HERE */
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[i].length; j++){
+                if(board[i][j]==0){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -47,8 +59,15 @@ public class Board2048 {
      *  An empty tile is one which holds the value 0.
      */
     private int numEmptyTiles() {
-        /*# YOUR CODE HERE */
-        return 0;
+        int count=0;
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[i].length; j++){
+                if(board[i][j]==0){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     /** Insert a random number (either 2 or 4) at a randon empty tile.
@@ -56,8 +75,6 @@ public class Board2048 {
      *  An empty tile is one which holds the value 0.
      */
     public void insertRandomTile() {
-        /*# YOUR CODE HERE */
-        
     }
 
     /** Move the tiles left. 
