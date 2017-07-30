@@ -73,10 +73,8 @@ public class FastFood{
      *  If there is not a ready order on the queue, it prints a warning message.
      */
     public void deliverOrder() {
-        if(orders.peek().isReady()){
-            Order topOrder = orders.poll();
-            double price = topOrder.getPrice();
-            this.balance+=price;
+        if(orders.peek().isReady()){;
+            this.balance+=(orders.poll().getPrice());
         }
         else{
             UI.println("The order is not ready");
@@ -89,7 +87,12 @@ public class FastFood{
      */
     public void drawOrders() {
         UI.clearGraphics();
-        /*# YOUR CODE HERE */
+        if(!orders.isEmpty()){
+            for(int i=0; i<orders.size(); i++){
+                //Once I have seen the demo I can fill this in...
+            }
+        }
+
         
     }
 
