@@ -1,0 +1,15 @@
+/* Reflection.txt for COMP103 - 2017T2, Assignment 2
+ * Name:
+ * Username:
+ * ID:
+ */
+
+For your reflection:
+====================
+
+Describe how far you got. If there was a problem you got stuck on, what was that problem?
+
+Reading and understanding someone else's code is difficult. What elements of Sokoban made it easier or made it more difficult for you to understand? Can you identify things that you would do or avoid doing if you were trying to make your own code easily understood by someone else?
+
+--------------------------------------------------------------------
+
