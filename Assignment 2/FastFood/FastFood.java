@@ -51,8 +51,8 @@ public class FastFood{
 
     /** Creates a new order and puts it on the queue to be processed */
     public void generateOrder() {
-        /*# YOUR CODE HERE */
-        
+        Order o = new Order();
+        orders.add(o);
     }
 
     /** As long as there is an order in the queue, adds the specified
@@ -62,8 +62,9 @@ public class FastFood{
      *  of the item is deducted from the current balance.
      */
     public void addItem(String item) {
-        /*# YOUR CODE HERE */
-        
+        if(!orders.isEmpty()){
+            orders.peek().addItemToOrder(item);
+        }
     }
 
     /** As long as there is an order at the front of the queue and it is ready,
@@ -72,7 +73,14 @@ public class FastFood{
      *  If there is not a ready order on the queue, it prints a warning message.
      */
     public void deliverOrder() {
-        /*# YOUR CODE HERE */
+        if(orders.peek().isReady()){
+            Order topOrder = orders.poll();
+            double price = topOrder.getPrice();
+            this.balance+=price;
+        }
+        else{
+            UI.println("The order is not ready");
+        }
         
     }
 
