@@ -9,6 +9,8 @@
  */
 
 import ecs100.*;
+
+import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
@@ -33,6 +35,8 @@ public class Sokoban {
     private Map<String, String> directionToWorkerImage;                // worker direction ->  image of worker
     private Map<String, String> keyToAction;                                  // key string -> action to perform
 
+    public Stack <ActionRecord> history = new Stack <ActionRecord>();
+
     // Constructors
     /** 
      *  Constructs a new Sokoban object
@@ -45,6 +49,8 @@ public class Sokoban {
         UI.addButton("up", () -> doAction("up"));
         UI.addButton("down", () -> doAction("down"));
         UI.addButton("right", () -> doAction("right"));
+        UI.addButton("Undo", this::undo);
+        UI.addButton("Quit", UI::quit);
 
         UI.println("Push the boxes\n to their target postions.");
         UI.println("You may use keys (wasd or ijkl and u)");
@@ -57,6 +63,38 @@ public class Sokoban {
     /** Responds to key actions */
     public void doKey(String key) {
         doAction(keyToAction.get(key));
+    }
+
+    public void undo(){ //Pop the top ActionRecord off the stack and reverses action.
+        ActionRecord temp = this.history.pop();
+        if(temp.isPush()) {
+            if (temp.direction() == "up") {
+                this.pull("down");
+            }
+            if (temp.direction() == "down") {
+                this.pull("up");
+            }
+            if (temp.direction() == "left") {
+                this.pull("right");
+            }
+            if (temp.direction() == "right") {
+                this.pull("left");
+            }
+        }
+        if(temp.isMove()){
+            if(temp.direction() == "up"){
+                this.move("down");
+            }
+            if(temp.direction() == "down"){
+                this.move("up");
+            }
+            if(temp.direction() == "left"){
+                this.move("right");
+            }
+            if(temp.direction() == "right"){
+                this.move("left");
+            }
+        }
     }
 
     /** 
@@ -111,6 +149,8 @@ public class Sokoban {
         drawWorker();  // display worker at new position
 
         Trace.println("Move " + direction);
+        ActionRecord tempMove = new ActionRecord("move", "direction");
+        history.add(tempMove);
     }
 
     /** Push: Moves the Worker, pushing the box one step 
@@ -130,6 +170,8 @@ public class Sokoban {
         drawSquare(boxPosition);
 
         Trace.println("Push " + direction);
+        ActionRecord tempPush = new ActionRecord("push", "direction");
+        history.add(tempPush);
     }
 
     /** Pull: (useful for undoing a push in the opposite direction)
@@ -151,10 +193,17 @@ public class Sokoban {
         drawWorker();
 
         Trace.println("Pull " + direction);
+        ActionRecord tempPull = new ActionRecord("pull", "direction");
+        history.add(tempPull);
     }
 
     /** Load a grid of squares (and Worker position) from a file */
     public void load(int level) {
+
+        for(int i=0; i<history.size(); i++){ //Iterate through history and delete all movements for new game.
+            history.pop();
+        }
+
         File f = new File("warehouse" + level + ".txt");
 
         if (f.exists()) {

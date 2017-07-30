@@ -16,6 +16,7 @@ public class ActionRecord {
     private boolean isPush;  // if it is not a "push", it is a "move"
     private String direction;
 
+
     public ActionRecord(String action, String dir) {
         if (action.equalsIgnoreCase("push"))
             isPush = true;
