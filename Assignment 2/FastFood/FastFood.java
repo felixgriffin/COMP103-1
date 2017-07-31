@@ -89,8 +89,10 @@ public class FastFood{
     public void drawOrders() {
         UI.clearGraphics();
         if(!orders.isEmpty()){
-            for(int i=0; i<orders.size(); i++){
-                orders.peek().draw(50);
+            int count=0;
+            for(Order o : orders){
+                o.draw(count*50);
+                count++;
             }
         }
         UI.drawString(""+this.balance, 10, 10);
