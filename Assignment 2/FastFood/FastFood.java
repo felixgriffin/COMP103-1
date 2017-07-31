@@ -35,7 +35,7 @@ public class FastFood{
     public FastFood() {
         orders = new ArrayDeque<Order>();
 
-        UI.drawImage("Burger.png", 50, 50);
+        //Code here
 
         UI.addButton("Practice Order", () -> {generateOrder(); drawOrders();});
         UI.addButton("Add Fish",       () -> {addItem("Fish"); drawOrders();});
@@ -52,7 +52,7 @@ public class FastFood{
     /** Creates a new order and puts it on the queue to be processed */
     public void generateOrder() {
         Order o = new Order();
-        orders.add(o);
+        orders.offer(o);
     }
 
     /** As long as there is an order in the queue, adds the specified
@@ -76,7 +76,8 @@ public class FastFood{
         if(!orders.isEmpty()) {
             if (orders.peek().isReady()) {
                 this.balance += (orders.poll().getPrice());
-            } else {
+            }
+            else {
                 UI.println("The order is not ready");
             }
         }
@@ -89,7 +90,7 @@ public class FastFood{
         UI.clearGraphics();
         if(!orders.isEmpty()){
             for(int i=0; i<orders.size(); i++){
-                orders.poll().draw(50);
+                orders.peek().draw(50);
             }
         }
         UI.drawString(""+this.balance, 10, 10);
