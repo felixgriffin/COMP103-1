@@ -86,6 +86,24 @@ public class Sokoban {
                     this.move("left");
                 }
             }
+            if(temp.isPush()){
+                if(temp.direction()=="up"){
+                    ActionRecord v = new ActionRecord("pull", "down");
+                    this.pull("down");
+                }
+                if(temp.direction()=="down"){
+                    ActionRecord v = new ActionRecord("pull", "up");
+                    this.pull("up");
+                }
+                if(temp.direction()=="left"){
+                    ActionRecord v = new ActionRecord("pull", "right");
+                    this.pull("right");
+                }
+                if(temp.direction()=="right"){
+                    ActionRecord v = new ActionRecord("pull", "left");
+                    this.pull("left");
+                }
+            }
         }
     }
 
