@@ -35,7 +35,7 @@ public class Sokoban {
     private Map<String, String> directionToWorkerImage;                // worker direction ->  image of worker
     private Map<String, String> keyToAction;                                  // key string -> action to perform
 
-    public Stack <ActionRecord> history = new Stack <ActionRecord>();
+    private Stack <ActionRecord> history = new Stack <ActionRecord>();
 
     // Constructors
     /** 
@@ -65,34 +65,26 @@ public class Sokoban {
         doAction(keyToAction.get(key));
     }
 
-    public void undo(){ //Pop the top ActionRecord off the stack and reverses action.
-        ActionRecord temp = this.history.pop();
-        if(temp.isPush()) {
-            if (temp.direction() == "up") {
-                this.pull("down");
-            }
-            if (temp.direction() == "down") {
-                this.pull("up");
-            }
-            if (temp.direction() == "left") {
-                this.pull("right");
-            }
-            if (temp.direction() == "right") {
-                this.pull("left");
-            }
-        }
-        if(temp.isMove()){
-            if(temp.direction() == "up"){
-                this.move("down");
-            }
-            if(temp.direction() == "down"){
-                this.move("up");
-            }
-            if(temp.direction() == "left"){
-                this.move("right");
-            }
-            if(temp.direction() == "right"){
-                this.move("left");
+    public void undo() { //Pop the top ActionRecord off the stack and reverses action.
+        if (!history.isEmpty()) {
+            ActionRecord temp = this.history.pop();
+            if(temp.isMove()){
+                if(temp.direction()=="up"){
+                    ActionRecord v = new ActionRecord("move", "down");
+                    this.move("down");
+                }
+                if(temp.direction()=="down"){
+                    ActionRecord v = new ActionRecord("move", "up");
+                    this.move("up");
+                }
+                if(temp.direction()=="left"){
+                    ActionRecord v = new ActionRecord("move", "right");
+                    this.move("right");
+                }
+                if(temp.direction()=="right"){
+                    ActionRecord v = new ActionRecord("move", "left");
+                    this.move("left");
+                }
             }
         }
     }
@@ -149,8 +141,8 @@ public class Sokoban {
         drawWorker();  // display worker at new position
 
         Trace.println("Move " + direction);
-        ActionRecord tempMove = new ActionRecord("move", "direction");
-        history.add(tempMove);
+        ActionRecord recordMove = new ActionRecord("move", direction);
+        history.push(recordMove);
     }
 
     /** Push: Moves the Worker, pushing the box one step 
@@ -170,8 +162,8 @@ public class Sokoban {
         drawSquare(boxPosition);
 
         Trace.println("Push " + direction);
-        ActionRecord tempPush = new ActionRecord("push", "direction");
-        history.add(tempPush);
+        ActionRecord recordPush = new ActionRecord("push", direction);
+        history.push(recordPush);
     }
 
     /** Pull: (useful for undoing a push in the opposite direction)
@@ -193,8 +185,8 @@ public class Sokoban {
         drawWorker();
 
         Trace.println("Pull " + direction);
-        ActionRecord tempPull = new ActionRecord("pull", "direction");
-        history.add(tempPull);
+        ActionRecord recordPull = new ActionRecord("pull", direction);
+        history.push(recordPull);
     }
 
     /** Load a grid of squares (and Worker position) from a file */
