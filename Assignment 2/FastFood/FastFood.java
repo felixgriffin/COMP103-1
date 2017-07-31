@@ -95,7 +95,7 @@ public class FastFood{
                 count++;
             }
         }
-        UI.drawString(""+this.balance, 10, 10);
+        UI.drawString("$"+this.balance, 10, 10);
     }
 
     // In the game version, the orders must be automatically generated.
