@@ -3,9 +3,9 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP103 - 2017T2, Assignment 2
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 import ecs100.*;

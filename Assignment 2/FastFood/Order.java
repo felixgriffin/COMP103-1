@@ -97,12 +97,12 @@ public class Order {
     }
 
     public void draw(int y) {
-        if (wantsFish) UI.drawImage("Fish-grey.png", 10, y);
-        if (wantsChips) UI.drawImage("Chips-grey.png", 50, y);
-        if (wantsBurger) UI.drawImage("Burger-grey.png", 90, y);
+        if (wantsFish) UI.drawImage("./Fish-grey.png", 10, y);
+        if (wantsChips) UI.drawImage("./Chips-grey.png", 50, y);
+        if (wantsBurger) UI.drawImage("./Burger-grey.png", 90, y);
 
-        if (hasFish) UI.drawImage("Fish.png", 10, y);
-        if (hasChips) UI.drawImage("Chips.png", 50, y);
-        if (hasBurger) UI.drawImage("Burger.png", 90, y);
+        if (hasFish) UI.drawImage("./Fish.png", 10, y);
+        if (hasChips) UI.drawImage("./Chips.png", 50, y);
+        if (hasBurger) UI.drawImage("./Burger.png", 90, y);
     }
 }
