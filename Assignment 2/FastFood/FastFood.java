@@ -35,7 +35,7 @@ public class FastFood{
     public FastFood() {
         orders = new ArrayDeque<Order>();
 
-        /*# YOUR CODE HERE */
+        UI.drawImage("Burger.png", 50, 50);
 
         UI.addButton("Practice Order", () -> {generateOrder(); drawOrders();});
         UI.addButton("Add Fish",       () -> {addItem("Fish"); drawOrders();});
@@ -73,13 +73,13 @@ public class FastFood{
      *  If there is not a ready order on the queue, it prints a warning message.
      */
     public void deliverOrder() {
-        if(orders.peek().isReady()){;
-            this.balance+=(orders.poll().getPrice());
+        if(!orders.isEmpty()) {
+            if (orders.peek().isReady()) {
+                this.balance += (orders.poll().getPrice());
+            } else {
+                UI.println("The order is not ready");
+            }
         }
-        else{
-            UI.println("The order is not ready");
-        }
-        
     }
 
     /** Draws the queue of orders on the Graphics pane.
@@ -89,11 +89,10 @@ public class FastFood{
         UI.clearGraphics();
         if(!orders.isEmpty()){
             for(int i=0; i<orders.size(); i++){
-                //Once I have seen the demo I can fill this in...
+                orders.poll().draw(50);
             }
         }
-
-        
+        UI.drawString(""+this.balance, 10, 10);
     }
 
     // In the game version, the orders must be automatically generated.
