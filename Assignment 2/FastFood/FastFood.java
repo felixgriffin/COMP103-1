@@ -63,7 +63,11 @@ public class FastFood{
      */
     public void addItem(String item) {
         if(!orders.isEmpty()){
-            orders.peek().addItemToOrder(item);
+            if(orders.peek().addItemToOrder(item)) {
+            }
+            else{
+                balance-=orders.peek().getPrice();
+            }
         }
     }
 
