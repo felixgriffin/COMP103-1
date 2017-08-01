@@ -90,9 +90,9 @@ public class Order {
      */
     public double getPrice() {
         double price = 0;
-        if (wantsFish) price += 2.50;
-        if (wantsChips) price += 1.50;
-        if (wantsBurger) price += 5.00;
+        if (wantsFish) price += FastFood.prices.get("Fish");
+        if (wantsChips) price += FastFood.prices.get("Chips");
+        if (wantsBurger) price += FastFood.prices.get("Burger");
         return price;
     }
 

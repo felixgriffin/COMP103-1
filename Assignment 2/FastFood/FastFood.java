@@ -30,12 +30,16 @@ public class FastFood{
 
     private Queue<Order> orders;
     private double balance;
+    public static Map <String, Double> prices;
 
 
     public FastFood() {
         orders = new ArrayDeque<Order>();
 
-        //Code here
+        prices = new HashMap<String, Double>();
+        prices.put("Fish", 2.50);
+        prices.put("Chips", 1.50);
+        prices.put("Burger", 5.00);
 
         UI.addButton("Practice Order", () -> {generateOrder(); drawOrders();});
         UI.addButton("Add Fish",       () -> {addItem("Fish"); drawOrders();});
@@ -67,6 +71,7 @@ public class FastFood{
             }
             else{
                 balance-=orders.peek().getPrice();
+                UI.println("$"+orders.peek().getPrice() + " has been deducted from your balance.");
             }
         }
     }
@@ -95,7 +100,7 @@ public class FastFood{
         if(!orders.isEmpty()){
             int count=0;
             for(Order o : orders){
-                o.draw(count*50);
+                o.draw(10+(count*50));
                 count++;
             }
         }
