@@ -71,14 +71,45 @@ public class Sokoban {
         if (!history.isEmpty()) {
             ActionRecord temp = this.history.pop();
             if(temp.isMove()){
-                this.move(this.oppositeDirection(temp.direction()));
+                this.move(this.oppositeDirection(temp.direction())); //Move in the opposite direction.
+                this.redo.push(history.peek()); //Add the undo to the redo stack (for challenge)
+                history.remove(history.peek()); //Due to was I implemented the ActionRectords I need to delete the object I made.
+            }
+            if(temp.isPush()){
+                this.pull(this.oppositeDirection(temp.direction())); //Pull a box that was pushed
                 this.redo.push(history.peek());
                 history.remove(history.peek());
             }
+        }
+    }
+
+    public void redo(){
+        if(!redo.isEmpty()){
+            ActionRecord temp2 = this.redo.pop();
+            if(temp2.isMove()){
+                this.move(this.oppositeDirection(temp2.direction())); //Undo the undo
+                //redo.remove(redo.peek());
+            }
+            else{
+                this.push(this.oppositeDirection(temp2.direction())); //Should push things that were pulled, doesn't in reality.
+                //redo.remove(redo.peek());
+            }
+        }
+    }
+
+    /*
+    public void undo() { //Pop the top ActionRecord off the stack and reverses action.
+        if (!history.isEmpty()) {
+            ActionRecord temp = this.history.pop();
+            if(temp.isMove()){
+                this.move(this.oppositeDirection(temp.direction()));
+                ActionRecord newMove = new ActionRecord ("move", this.oppositeDirection(temp.direction()));
+                this.redo.push(newMove);
+            }
             if(temp.isPush()){
-                this.pull(this.oppositeDirection(temp.direction()));
-                this.redo.push(history.peek());
-                history.remove(history.peek());
+                this.pull(temp.direction());
+                ActionRecord newPull = new ActionRecord ("pull", this.oppositeDirection(temp.direction()));
+                this.redo.push(history.push(newPull));
             }
         }
     }
@@ -90,12 +121,17 @@ public class Sokoban {
                 this.move(this.oppositeDirection(temp2.direction()));
                 //redo.remove(redo.peek());
             }
-            if(temp2.isPush()){
-                this.pull(this.oppositeDirection(temp2.direction()));
+            else{
+                this.push(this.oppositeDirection(temp2.direction()));
                 //redo.remove(redo.peek());
             }
         }
     }
+
+     */
+
+    /*Above is the code I tried implementing later because it avoided having to delete an ActionRecord abject after
+    calling the move/push/pull methods but in the end I had more issues to fix so I stayed with my version. */
 
     /** 
      *  Moves the worker in the specified direction, if possible.
@@ -150,7 +186,7 @@ public class Sokoban {
 
         Trace.println("Move " + direction);
         ActionRecord recordMove = new ActionRecord("move", direction);
-        history.push(recordMove);
+        history.push(recordMove); //Add a new ActionRecord object for a move in some direction
     }
 
     /** Push: Moves the Worker, pushing the box one step 
@@ -171,7 +207,7 @@ public class Sokoban {
 
         Trace.println("Push " + direction);
         ActionRecord recordPush = new ActionRecord("push", direction);
-        history.push(recordPush);
+        history.push(recordPush); //Add a new ActionRecord object for a push in some direction
     }
 
     /** Pull: (useful for undoing a push in the opposite direction)
@@ -194,7 +230,7 @@ public class Sokoban {
 
         Trace.println("Pull " + direction);
         ActionRecord recordPull = new ActionRecord("pull", direction);
-        history.push(recordPull);
+        history.push(recordPull); //Add a new ActionRecord object for a pull in some direction
     }
 
     /** Load a grid of squares (and Worker position) from a file */

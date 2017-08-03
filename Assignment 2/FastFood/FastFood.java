@@ -30,7 +30,7 @@ public class FastFood{
 
     private Queue<Order> orders;
     private double balance;
-    public static Map <String, Double> prices;
+    public static Map <String, Double> prices; //Instead of the prices as doubles.
 
 
     public FastFood() {
@@ -71,7 +71,7 @@ public class FastFood{
             }
             else{
                 balance-=orders.peek().getPrice();
-                UI.println("$"+orders.peek().getPrice() + " has been deducted from your balance.");
+                UI.println("$"+orders.peek().getPrice() + " has been deducted from your balance."); //Deducts money if order is wrong
             }
         }
     }
@@ -84,7 +84,7 @@ public class FastFood{
     public void deliverOrder() {
         if(!orders.isEmpty()) {
             if (orders.peek().isReady()) {
-                this.balance += (orders.poll().getPrice());
+                this.balance += (orders.poll().getPrice()); //Add the price of the order to the balance
             }
             else {
                 UI.println("The order is not ready");
@@ -100,7 +100,7 @@ public class FastFood{
         if(!orders.isEmpty()){
             int count=0;
             for(Order o : orders){
-                o.draw(10+(count*50));
+                o.draw(10+(count*50)); //Draw the orders at some multiple of the incrementing variable
                 count++;
             }
         }

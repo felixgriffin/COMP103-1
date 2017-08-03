@@ -1,7 +1,7 @@
 /* Reflection.txt for COMP103 - 2017T2, Assignment 2
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 For your reflection:
@@ -9,7 +9,23 @@ For your reflection:
 
 Describe how far you got. If there was a problem you got stuck on, what was that problem?
 
-Reading and understanding someone else's code is difficult. What elements of Sokoban made it easier or made it more difficult for you to understand? Can you identify things that you would do or avoid doing if you were trying to make your own code easily understood by someone else?
+In FastFood I got through half of completion (implementing the prices as a map). 
+For FastFood I found undstanding what an order is with respect to the items in the order. 
+
+In Sokoban I got through Core/Completion and a quarter of challenge (move for redo works but not push). 
+The problem was that I set up my code such that each time a pull, push or move is called it created a new 
+ActionRecord object which meant I had to delete them after they were created in the undo/redo section of the code.
+ In the future I would have used a smarter solution like putting it in the doAction method which would have made Challenge a bit easier.
+
+Reading and understanding someone else's code is difficult. What elements of Sokoban made it easier or made it more 
+difficult for you to understand? Can you identify things that you would do or avoid doing if you were trying to make your own 
+code easily understood by someone else?
+
+It was hard to understand where I should be making my ActionRecord objects. As mentioned before I thought that in the 
+respective methods would be the best place intuitively but it ended up being the worst. 
+
+It was handy that Challenge and Completion were so similar to each other, it let us plan ahead and have a good idea 
+of what needed to be done so it didn't confuse me (much).
 
 --------------------------------------------------------------------
 

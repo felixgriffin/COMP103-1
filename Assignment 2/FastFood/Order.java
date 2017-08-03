@@ -90,7 +90,7 @@ public class Order {
      */
     public double getPrice() {
         double price = 0;
-        if (wantsFish) price += FastFood.prices.get("Fish");
+        if (wantsFish) price += FastFood.prices.get("Fish"); //Prices been replaced with references to the map.
         if (wantsChips) price += FastFood.prices.get("Chips");
         if (wantsBurger) price += FastFood.prices.get("Burger");
         return price;
