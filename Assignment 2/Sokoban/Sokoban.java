@@ -88,11 +88,11 @@ public class Sokoban {
             ActionRecord temp2 = this.redo.pop();
             if(temp2.isMove()){
                 this.move(this.oppositeDirection(temp2.direction()));
-                redo.remove(redo.peek());
+                //redo.remove(redo.peek());
             }
             if(temp2.isPush()){
                 this.pull(this.oppositeDirection(temp2.direction()));
-                redo.remove(redo.peek());
+                //redo.remove(redo.peek());
             }
         }
     }
