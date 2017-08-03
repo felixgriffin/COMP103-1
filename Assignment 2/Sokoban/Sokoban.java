@@ -69,7 +69,7 @@ public class Sokoban {
 
     public void undo() { //Pop the top ActionRecord off the stack and reverses action.
         if (!history.isEmpty()) {
-            ActionRecord temp = this.history.peek();
+            ActionRecord temp = this.history.pop();
             if(temp.isMove()){
                 this.move(this.oppositeDirection(temp.direction()));
                 this.redo.push(history.peek());
@@ -85,7 +85,7 @@ public class Sokoban {
 
     public void redo(){
         if(!redo.isEmpty()){
-            ActionRecord temp2 = this.redo.peek();
+            ActionRecord temp2 = this.redo.pop();
             if(temp2.isMove()){
                 this.move(this.oppositeDirection(temp2.direction()));
                 redo.remove(redo.peek());
