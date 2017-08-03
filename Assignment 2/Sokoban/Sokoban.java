@@ -70,38 +70,38 @@ public class Sokoban {
             ActionRecord temp = this.history.pop();
             if(temp.isMove()){
                 if(temp.direction()=="up"){
-                    ActionRecord v = new ActionRecord("move", "down");
                     this.move("down");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="down"){
-                    ActionRecord v = new ActionRecord("move", "up");
                     this.move("up");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="left"){
-                    ActionRecord v = new ActionRecord("move", "right");
                     this.move("right");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="right"){
-                    ActionRecord v = new ActionRecord("move", "left");
                     this.move("left");
+                    history.remove(history.peek());
                 }
             }
             if(temp.isPush()){
                 if(temp.direction()=="up"){
-                    ActionRecord v = new ActionRecord("pull", "down");
                     this.pull("down");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="down"){
-                    ActionRecord v = new ActionRecord("pull", "up");
                     this.pull("up");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="left"){
-                    ActionRecord v = new ActionRecord("pull", "right");
                     this.pull("right");
+                    history.remove(history.peek());
                 }
                 if(temp.direction()=="right"){
-                    ActionRecord v = new ActionRecord("pull", "left");
                     this.pull("left");
+                    history.remove(history.peek());
                 }
             }
         }
