@@ -36,6 +36,7 @@ public class Sokoban {
     private Map<String, String> keyToAction;                                  // key string -> action to perform
 
     private Stack <ActionRecord> history = new Stack <ActionRecord>();
+    private Stack <ActionRecord> redo = new Stack <ActionRecord>();
 
     // Constructors
     /** 
@@ -50,6 +51,7 @@ public class Sokoban {
         UI.addButton("down", () -> doAction("down"));
         UI.addButton("right", () -> doAction("right"));
         UI.addButton("Undo", this::undo);
+        UI.addButton("Redo", this::redo);
         UI.addButton("Quit", UI::quit);
 
         UI.println("Push the boxes\n to their target postions.");
@@ -67,14 +69,30 @@ public class Sokoban {
 
     public void undo() { //Pop the top ActionRecord off the stack and reverses action.
         if (!history.isEmpty()) {
-            ActionRecord temp = this.history.pop();
+            ActionRecord temp = this.history.peek();
             if(temp.isMove()){
-                    this.move(this.oppositeDirection(temp.direction()));
-                    history.remove(history.peek());
+                this.move(this.oppositeDirection(temp.direction()));
+                this.redo.push(history.peek());
+                history.remove(history.peek());
             }
             if(temp.isPush()){
                 this.pull(this.oppositeDirection(temp.direction()));
+                this.redo.push(history.peek());
                 history.remove(history.peek());
+            }
+        }
+    }
+
+    public void redo(){
+        if(!redo.isEmpty()){
+            ActionRecord temp2 = this.redo.peek();
+            if(temp2.isMove()){
+                this.move(this.oppositeDirection(temp2.direction()));
+                redo.remove(redo.peek());
+            }
+            if(temp2.isPush()){
+                this.pull(this.oppositeDirection(temp2.direction()));
+                redo.remove(redo.peek());
             }
         }
     }
