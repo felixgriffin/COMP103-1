@@ -1,0 +1,61 @@
+COMP 103 Assignment 3 
+Report on ArraySet and SortedArraySet testing and benchmarking
+
+Name:
+ID:
+
+Testing:
+--------
+Which test methods failed for your implementations?
+ 
+- ArraySet:
+
+
+
+
+
+
+
+- SortedArraySet:
+
+
+
+
+
+
+
+Performance Benchmarking:
+-------------------------
+What were the results of your timing tests?
+
+Give the time to load the dictionary and the time to check the story, for 
+  - SortedArraySet, ArraySet, and HashSet, and
+  - dictionaryUnsorted.txt and dictionarySorted.txt. 
+
+Present the results, in the table below. 
+Provide times in seconds.
+
+ArraySet                       load | check (seconds)
+    dictionarySorted          ..... | ......  
+    dictionaryUnsorted        ..... | ......
+
+SortedArraySet                 load | check (seconds)
+    dictionarySorted          ..... | ......  
+    dictionaryUnsorted        ..... | ......
+
+HashSet                        load | check (seconds)
+    dictionarySorted          ..... | ......  
+    dictionaryUnsorted        ..... | ......
+
+
+Discussion:
+-----------
+Discuss the measurements, pointing out any interesting or unexpected results, and try to give explanations for the results. In particular, consider the following questions:
+
+- How can you explain the differences in performance for the various implementations? 
+
+- How can you explain the differences in performance with respect to the two versions of the dictionary?
+
+In your answers, make reference to the sub-results for
+"loading the dictionary" and "checking the story".
+ 

@@ -1,0 +1,20 @@
+/* Reflection.txt for COMP103 - 2017T2, Assignment 3
+ * Name:
+ * Username:
+ * ID:
+ */
+
+For your reflection:
+====================
+
+Describe how far you got on this assignment. Please be specific about what you
+attempted (core, completion, challenge, and any finer-grained goals, if
+applicable). Please also state how successful you believe you were respectively.
+If there were any problems you got stuck on, what were they? 
+
+The Java collection library provides several different implementations of the
+Set type, including HashSet and TreeSet. Why does it not provide ArraySet?
+After all, Java provides the ArrayList implementation of the List type!
+
+--------------------------------------------------------------------
+
