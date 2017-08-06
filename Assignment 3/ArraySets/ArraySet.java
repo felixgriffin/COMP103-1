@@ -40,7 +40,6 @@ public class ArraySet <E> extends AbstractSet <E> {
     // Data fields
     /*# YOUR CODE HERE */
     Object array [];
-    int sizeField;
 
     // --- Constructors --------------------------------------
 
@@ -48,22 +47,19 @@ public class ArraySet <E> extends AbstractSet <E> {
     public ArraySet() {
         /*# YOUR CODE HERE */
         array = new Object[10];
-        sizeField=0;
-
     }
 
     // --- Methods --------------------------------------
     /** 
      * @return the number of items in the set  
      */
-    public int size () {
+    public int size () { //Increments a dummy variable every time it finds a non-null element. Returns amount of elements.
         int count=0;
         for(int i=0; i<array.length; i++){
             if(!(array[i]==null)){
                 count++;
             }
         }
-        sizeField=count;
         return count;
     }
 
@@ -76,22 +72,41 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the collection changes, and false if it did not change.
      */
     public boolean add(E item) {
-
-
+        for(int i=0; i<array.length; i++){ //If it's already there, return.
+            if(array[i].equals(item)){
+                return false;
+            }
+        }
+        if(this.size()<array.length){ //If we have space, add it to the array.
+            for(int j=0; j<array.length; j++){
+                if(array[j]==null){
+                    array[j]=item;
+                    return true;
+                }
+            }
+        }
+        else{ //If we don't have space, double the array size and add it to the array.
+            this.ensureCapacity();
+            for(int k=0; k<array.length; k++){
+                if(array[k]==null){
+                    array[k]=item;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /** 
      * @return true if this set contains the specified item. 
      * 
      */
-    public boolean contains(Object item) {
-        if(!(array.length==0)){
+    public boolean contains(Object item) { //Return true if the item is found in the array.
             for(int i=0; i<array.length; i++){
                 if(array[i].equals(item)){
                     return true;
                 }
             }
-        }
          return false;
     }
 
@@ -100,17 +115,15 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the item was present and then removed.
      *  Makes no changes to the set and returns false if the item is not present.
      */
-    public boolean remove (Object item) {
-        if(!(array.length==0)){
+    public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
+                                            //element null.
             for(int i=0; i<array.length; i++){
                 if(array[i].equals(item)){
                     array[i]=array[array.length-1];
                     array[array.length-1]=null;
-                    sizeField-=1;
                    return true;
                 }
             }
-        }
         return false;
     }
 
@@ -121,12 +134,18 @@ public class ArraySet <E> extends AbstractSet <E> {
     */
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     private void ensureCapacity () {
-        if(this.size()==array.length-1){
-            Object newArray []= new Object [array.length*2];
+        if(this.size()==array.length){ //If the number of non-null elements is the same as the size of the array
+                                        //double the size of the array.
+            Object temp []= new Object [array.length]; //Copy over all the elements.
             for(int i=0; i<array.length; i++){
-                newArray[i]=array[i];
+                temp[i]=array[i];
+            }
+            array = new Object [temp.length*2]; //Make a new array in the same place with double the length.
+            for(int j=0; j<temp.length; j++){
+                array[j]=temp[j]; //Copy over all of the elements from the temporary array.
             }
         }
+
     }
 
     // You may find it convenient to define the following method and use it in
@@ -139,8 +158,12 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return the index of the item, or -1 if not present
      */
     private int findIndexOf(Object item) {
-        return 0;
-
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].equals(item)) {
+                    return i;
+                }
+            }
+        return -1;
     }
 
     /** ---------- The code below is already written for you ---------- **/
