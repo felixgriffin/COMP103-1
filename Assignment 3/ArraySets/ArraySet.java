@@ -3,11 +3,12 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP103 - 2017T2, Assignment 3
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -38,12 +39,16 @@ public class ArraySet <E> extends AbstractSet <E> {
 
     // Data fields
     /*# YOUR CODE HERE */
+    Object array [];
+    int sizeField;
 
     // --- Constructors --------------------------------------
 
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     public ArraySet() {
         /*# YOUR CODE HERE */
+        array = new Object[10];
+        sizeField=0;
 
     }
 
@@ -52,8 +57,14 @@ public class ArraySet <E> extends AbstractSet <E> {
      * @return the number of items in the set  
      */
     public int size () {
-        /*# YOUR CODE HERE */
-
+        int count=0;
+        for(int i=0; i<array.length; i++){
+            if(!(array[i]==null)){
+                count++;
+            }
+        }
+        sizeField=count;
+        return count;
     }
 
     /** 
@@ -65,7 +76,7 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the collection changes, and false if it did not change.
      */
     public boolean add(E item) {
-        /*# YOUR CODE HERE */
+
 
     }
 
@@ -74,8 +85,14 @@ public class ArraySet <E> extends AbstractSet <E> {
      * 
      */
     public boolean contains(Object item) {
-        /*# YOUR CODE HERE */
-
+        if(!(array.length==0)){
+            for(int i=0; i<array.length; i++){
+                if(array[i].equals(item)){
+                    return true;
+                }
+            }
+        }
+         return false;
     }
 
     /** 
@@ -84,8 +101,17 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  Makes no changes to the set and returns false if the item is not present.
      */
     public boolean remove (Object item) {
-        /*# YOUR CODE HERE */
-
+        if(!(array.length==0)){
+            for(int i=0; i<array.length; i++){
+                if(array[i].equals(item)){
+                    array[i]=array[array.length-1];
+                    array[array.length-1]=null;
+                    sizeField-=1;
+                   return true;
+                }
+            }
+        }
+        return false;
     }
 
     /** 
@@ -95,8 +121,12 @@ public class ArraySet <E> extends AbstractSet <E> {
     */
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     private void ensureCapacity () {
-        /*# YOUR CODE HERE */
-
+        if(this.size()==array.length-1){
+            Object newArray []= new Object [array.length*2];
+            for(int i=0; i<array.length; i++){
+                newArray[i]=array[i];
+            }
+        }
     }
 
     // You may find it convenient to define the following method and use it in
@@ -109,7 +139,7 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return the index of the item, or -1 if not present
      */
     private int findIndexOf(Object item) {
-        /*# YOUR CODE HERE */
+        return 0;
 
     }
 
