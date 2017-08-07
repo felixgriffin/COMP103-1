@@ -111,7 +111,7 @@ public class ArraySet <E> extends AbstractSet <E> {
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) { //If the item is found in the array.
                     data[i] = data[this.count]; //Replace the item with the last element.
-                    this.count--; //Decrease the amounf of populated elements in the array.
+                    this.count--; //Decrease the amount of populated elements in the array.
                     return true; //Return that the array has changed.
                 }
             }
