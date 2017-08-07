@@ -38,25 +38,22 @@ import java.util.*;
 public class ArraySet <E> extends AbstractSet <E> {
 
     // Data fields
-    /*# YOUR CODE HERE */
-    E[] data;
-    int count;
+    E[] data; //Generic array
+    int count; //Global field for number of non-null elements in the array
 
     // --- Constructors --------------------------------------
 
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     public ArraySet() {
-        /*# YOUR CODE HERE */
-        data = (E[]) new Object[10];
+        this.data = (E[]) new Object[10]; //Initialise the array to a size of 10.
+        this.count = 0;
     }
 
     // --- Methods --------------------------------------
     /** 
      * @return the number of items in the set  
      */
-    public int size () { //Increments a dummy variable every time it finds a non-null element. Returns amount of elements.
-        return this.count;
-    }
+    public int size () {return this.count;}
 
     /** 
      *  Adds the specified item to this set 
@@ -67,31 +64,31 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the collection changes, and false if it did not change.
      */
     public boolean add(E item) {
-        for(int i=0; i<data.length; i++){ //If it's already there, return.
-            if(data[i].equals(item)){
-                return false;
+        for(int i=0; i<data.length; i++) {
+            if (data[i].equals(item)) { //If the element is already in the array.
+                return false; //Return without changing the collection.
             }
         }
-        if(this.size()<data.length){ //If we have space, add it to the array.
+        if(this.count<data.length){ //If there is space in the array.
             for(int j=0; j<data.length; j++){
-                if(data[j]==null){
-                    data[j]=item;
-                    this.count++;
-                    return true;
+                if(data[j].equals(null)){ //Find the first null.
+                    data[j]=item; //Place the item in the null space.
+                    this.count++; //Increment the amount of elements in the array.
+                    return true; //Return that the collection has changed.
                 }
             }
         }
-        else{ //If we don't have space, double the array size and add it to the array.
-            this.ensureCapacity();
+        else{ //In the case that the array is full.
+            this.ensureCapacity(); //Double size of array.
             for(int k=0; k<data.length; k++){
-                if(data[k]==null){
-                    data[k]=item;
-                    this.count++;
-                    return true;
+                if(data[k].equals(null)){ //Find the first null.
+                    data[k]=item; //Place the item in the null space.
+                    this.count++; //Increment the amount of elements in the array.
+                    return true; //Return that the collection has changed.
                 }
             }
         }
-        return false;
+        return false; //If the collection hasn't changed, return false.
     }
 
     /** 
@@ -99,8 +96,8 @@ public class ArraySet <E> extends AbstractSet <E> {
      * 
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
-           if(this.size()>0) {
-               for (int i = 0; i < data.length; i++) {
+           if(this.count>0) {
+               for(int i = 0; i < data.length; i++) {
                    if (data[i].equals(item)) {
                        return true;
                    }
@@ -116,16 +113,16 @@ public class ArraySet <E> extends AbstractSet <E> {
      */
     public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
        //element null
-        if(this.size()>0){
+        if(this.count>0){
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) {
                     data[i] = data[data.length - 1];
                     data[data.length - 1] = null;
+                    this.count--;
                     return true;
                 }
             }
         }
-        this.size();
         return false;
     }
 
@@ -136,13 +133,12 @@ public class ArraySet <E> extends AbstractSet <E> {
     */
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     private void ensureCapacity () {
-        if(this.size()==data.length){ //If the number of non-null elements is the same as the size of the array
-                                        //double the size of the array.
-            E[] temp = (E[]) new Object [data.length*2]; //Copy over all the elements.
+        if(this.count==data.length){ //If at max capacity.
+            E[] temp = (E[]) new Object [data.length*2]; //Double the size of the array.
             for(int i=0; i<data.length; i++){
-                temp[i]=data[i];
+                temp[i]=data[i]; //Copy over the elements.
             }
-            data = temp; //Make a new array in the same place with double the length.
+            data = temp; //Set it back to original array with doubled size and original elements remaining.
         }
     }
 
@@ -156,10 +152,10 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return the index of the item, or -1 if not present
      */
     private int findIndexOf(Object item) {
-        if(this.size()>0) {
+        if(this.count>0) { //If the array is not empty.
             for (int i = 0; i < data.length; i++) {
-                if (data[i].equals(item)) {
-                    return i;
+                if (data[i].equals(item)) { //If the element exists in the array.
+                    return i; //Return the index the element is stored at in the array.
                 }
             }
         }
