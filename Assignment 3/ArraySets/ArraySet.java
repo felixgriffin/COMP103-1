@@ -63,28 +63,29 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @param item the item to be added to the set
      *  @return true if the collection changes, and false if it did not change.
      */
-    public boolean add(E item) {
-        for(int i=0; i<data.length; i++) {
-            if (data[i].equals(item)) { //If the element is already in the array.
-                return false; //Return without changing the collection.
-            }
-        }
-        if(this.count<data.length){ //If there is space in the array.
-            for(int j=0; j<data.length; j++){
-                if(data[j].equals(null)){ //Find the first null.
-                    data[j]=item; //Place the item in the null space.
-                    this.count++; //Increment the amount of elements in the array.
-                    return true; //Return that the collection has changed.
+    public boolean add(E item){
+        if(!(item.equals(null))) {
+            for (int i = 0; i < data.length; i++) {
+                if (data[i].equals(item)) { //If the element is already in the array.
+                    return false; //Return without changing the collection.
                 }
             }
-        }
-        else{ //In the case that the array is full.
-            this.ensureCapacity(); //Double size of array.
-            for(int k=0; k<data.length; k++){
-                if(data[k].equals(null)){ //Find the first null.
-                    data[k]=item; //Place the item in the null space.
-                    this.count++; //Increment the amount of elements in the array.
-                    return true; //Return that the collection has changed.
+            if (this.count < data.length) { //If there is space in the array.
+                for (int j = 0; j < data.length; j++) {
+                    if (data[j].equals(null)) { //Find the first null.
+                        data[j] = item; //Place the item in the null space.
+                        this.count++; //Increment the amount of elements in the array.
+                        return true; //Return that the collection has changed.
+                    }
+                }
+            } else { //In the case that the array is full.
+                this.ensureCapacity(); //Double size of array.
+                for (int k = 0; k < data.length; k++) {
+                    if (data[k].equals(null)) { //Find the first null.
+                        data[k] = item; //Place the item in the null space.
+                        this.count++; //Increment the amount of elements in the array.
+                        return true; //Return that the collection has changed.
+                    }
                 }
             }
         }
@@ -96,13 +97,15 @@ public class ArraySet <E> extends AbstractSet <E> {
      * 
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
-           if(this.count>0) {
-               for(int i = 0; i < data.length; i++) {
-                   if (data[i].equals(item)) {
-                       return true;
-                   }
-               }
-           }
+        if(!(item.equals(null))){
+            if (this.count > 0) {
+                for (int i = 0; i < data.length; i++) {
+                    if (data[i].equals(item)) {
+                        return true;
+                    }
+                }
+            }
+        }
          return false;
     }
 
@@ -113,13 +116,15 @@ public class ArraySet <E> extends AbstractSet <E> {
      */
     public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
        //element null
-        if(this.count>0){
-            for (int i = 0; i < data.length; i++) {
-                if (data[i].equals(item)) {
-                    data[i] = data[data.length - 1];
-                    data[data.length - 1] = null;
-                    this.count--;
-                    return true;
+        if(!(item.equals(null))){
+            if (this.count > 0) {
+                for (int i = 0; i < data.length; i++) {
+                    if (data[i].equals(item)) {
+                        data[i] = data[data.length - 1];
+                        data[data.length - 1] = null;
+                        this.count--;
+                        return true;
+                    }
                 }
             }
         }
