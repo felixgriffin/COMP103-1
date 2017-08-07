@@ -55,13 +55,7 @@ public class ArraySet <E> extends AbstractSet <E> {
      * @return the number of items in the set  
      */
     public int size () { //Increments a dummy variable every time it finds a non-null element. Returns amount of elements.
-        this.count=0;
-        for(int i=0; i<data.length; i++){
-            if(!(data[i]==null)){
-                this.count++;
-            }
-        }
-        return count;
+        return this.count;
     }
 
     /** 
@@ -78,10 +72,11 @@ public class ArraySet <E> extends AbstractSet <E> {
                 return false;
             }
         }
-        if(this.size()<data.length){ //If we have space, add it to the data.
+        if(this.size()<data.length){ //If we have space, add it to the array.
             for(int j=0; j<data.length; j++){
                 if(data[j]==null){
                     data[j]=item;
+                    this.count++;
                     return true;
                 }
             }
@@ -91,11 +86,11 @@ public class ArraySet <E> extends AbstractSet <E> {
             for(int k=0; k<data.length; k++){
                 if(data[k]==null){
                     data[k]=item;
+                    this.count++;
                     return true;
                 }
             }
         }
-        this.size();
         return false;
     }
 
@@ -104,11 +99,13 @@ public class ArraySet <E> extends AbstractSet <E> {
      * 
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
-            for(int i=0; i<data.length; i++){
-                if(data[i].equals(item)){
-                    return true;
-                }
-            }
+           if(this.size()>0) {
+               for (int i = 0; i < data.length; i++) {
+                   if (data[i].equals(item)) {
+                       return true;
+                   }
+               }
+           }
          return false;
     }
 
@@ -118,14 +115,16 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  Makes no changes to the set and returns false if the item is not present.
      */
     public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
-                                            //element null.
-            for(int i=0; i<data.length; i++){
-                if(data[i].equals(item)){
-                    data[i]=data[data.length-1];
-                    data[data.length-1]=null;
-                   return true;
+       //element null
+        if(this.size()>0){
+            for (int i = 0; i < data.length; i++) {
+                if (data[i].equals(item)) {
+                    data[i] = data[data.length - 1];
+                    data[data.length - 1] = null;
+                    return true;
                 }
             }
+        }
         this.size();
         return false;
     }
@@ -157,11 +156,13 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return the index of the item, or -1 if not present
      */
     private int findIndexOf(Object item) {
+        if(this.size()>0) {
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) {
                     return i;
                 }
             }
+        }
         return -1;
     }
 
