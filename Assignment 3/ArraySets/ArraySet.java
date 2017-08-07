@@ -67,7 +67,7 @@ public class ArraySet <E> extends AbstractSet <E> {
         if(item.equals(null)){
             throw new IllegalArgumentException();
         }
-        if(!(item.equals(null))) {
+        if(!(item.equals("null"))) {
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) { //If the element is already in the array.
                     return false; //Return without changing the collection.
@@ -75,7 +75,7 @@ public class ArraySet <E> extends AbstractSet <E> {
             }
             if (this.count < data.length) { //If there is space in the array.
                 for (int j = 0; j < data.length; j++) {
-                    if (data[j].equals(null)) { //Find the first null.
+                    if (data[j].equals("null")) { //Find the first null.
                         data[j] = item; //Place the item in the null space.
                         this.count++; //Increment the amount of elements in the array.
                         return true; //Return that the collection has changed.
@@ -84,7 +84,7 @@ public class ArraySet <E> extends AbstractSet <E> {
             } else { //In the case that the array is full.
                 this.ensureCapacity(); //Double size of array.
                 for (int k = 0; k < data.length; k++) {
-                    if (data[k].equals(null)) { //Find the first null.
+                    if (data[k].equals("null")) { //Find the first null.
                         data[k] = item; //Place the item in the null space.
                         this.count++; //Increment the amount of elements in the array.
                         return true; //Return that the collection has changed.
