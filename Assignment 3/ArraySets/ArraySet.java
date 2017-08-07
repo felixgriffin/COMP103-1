@@ -86,16 +86,16 @@ public class ArraySet <E> extends AbstractSet <E> {
         return false; //If the collection hasn't changed, return false.
     }
 
-
-
     /** 
      * @return true if this set contains the specified item. 
      * 
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
-        for (int i = 0; i < data.length; i++) {
-            if (data[i].equals(item)){
-                return true;
+        if(!(this.count==0)){
+            for (int i = 0; i < data.length; i++) {
+                if (data[i].equals(item)) {
+                    return true;
+                }
             }
         }
          return false;
@@ -107,11 +107,13 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  Makes no changes to the set and returns false if the item is not present.
      */
     public boolean remove (Object item) {
-        for(int i=0; i<data.length; i++){
-            if(data[i].equals(item)){ //If the item is found in the array.
-                data[i]=data[this.count]; //Replace the item with the last element.
-                this.count--; //Decrease the amounf of populated elements in the array.
-                return true; //Return that the array has changed.
+        if(!(this.count==0)){
+            for (int i = 0; i < data.length; i++) {
+                if (data[i].equals(item)) { //If the item is found in the array.
+                    data[i] = data[this.count]; //Replace the item with the last element.
+                    this.count--; //Decrease the amounf of populated elements in the array.
+                    return true; //Return that the array has changed.
+                }
             }
         }
         return false; //If the item isn't found, return that no changes to the array have occured.
@@ -144,11 +146,13 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return the index of the item, or -1 if not present
      */
     private int findIndexOf(Object item) {
+        if(!(this.count==0)){
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) { //If the element exists in the array.
                     return i; //Return the index the element is stored at in the array.
                 }
             }
+        }
         return -1;
     }
 
