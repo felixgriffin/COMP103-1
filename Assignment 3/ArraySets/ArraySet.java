@@ -45,7 +45,7 @@ public class ArraySet <E> extends AbstractSet <E> {
 
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     public ArraySet() {
-        this.data = (E[]) new Object[10]; //Initialise the array to a size of 10.
+        this.data = (E[]) new Object[1]; //Initialise the array to a size of 1.
         this.count = 0;
     }
 
@@ -78,13 +78,15 @@ public class ArraySet <E> extends AbstractSet <E> {
             this.count++; //Increase the count of populated spaces in the array.
             return true; //Return that the array has changed.
         }
-        if(this.count<data.length){ //If there is already space in the array.
+        else if(this.count<data.length){ //If there is already space in the array.
             data[this.count] = item; //Add the new item in.
             this.count++; //Increase the count of populated spaces in the array.
             return true; //Return that the array has changed.
         }
         return false; //If the collection hasn't changed, return false.
     }
+
+
 
     /** 
      * @return true if this set contains the specified item. 
@@ -104,18 +106,19 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the item was present and then removed.
      *  Makes no changes to the set and returns false if the item is not present.
      */
-    public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
-       //element null
+    public boolean remove (Object item) {
         for(int i=0; i<data.length; i++){
-            if(data[i].equals(item)){
-                data[i]=data[this.count];
-                data[this.count]=null;
-                this.count--;
-                return true;
+            if(data[i].equals(item)){ //If the item is found in the array.
+                data[i]=data[this.count]; //Replace the item with the last element.
+                this.count--; //Decrease the amounf of populated elements in the array.
+                return true; //Return that the array has changed.
             }
         }
-        return false;
+        return false; //If the item isn't found, return that no changes to the array have occured.
     }
+
+    /* 08.08.17 Get help with removing the last element that has been moved to cover the removed element
+    without setting it to null. */
 
     /** 
     * 
