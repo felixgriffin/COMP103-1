@@ -64,6 +64,9 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the collection changes, and false if it did not change.
      */
     public boolean add(E item){
+        if(item.equals(null)){
+            throw new IllegalArgumentException();
+        }
         if(!(item.equals(null))) {
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) { //If the element is already in the array.
@@ -97,6 +100,9 @@ public class ArraySet <E> extends AbstractSet <E> {
      * 
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
+        if(item.equals(null)){
+            throw new IllegalArgumentException();
+        }
         if(!(item.equals(null))){
             if (this.count > 0) {
                 for (int i = 0; i < data.length; i++) {
@@ -116,6 +122,9 @@ public class ArraySet <E> extends AbstractSet <E> {
      */
     public boolean remove (Object item) { //If an item is found in the array, replace it with last element and make last
        //element null
+        if(item.equals(null)){
+            throw new IllegalArgumentException();
+        }
         if(!(item.equals(null))){
             if (this.count > 0) {
                 for (int i = 0; i < data.length; i++) {
