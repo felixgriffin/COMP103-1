@@ -39,14 +39,16 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
 
     // Data fields
     /*# Copy your declrations from ArraySet here */
-    /*# YOUR CODE HERE */
+    E[] data; //Generic array
+    int count; //Global field for number of non-null elements in the array
 
     // --- Constructors --------------------------------------
 
     @SuppressWarnings("unchecked")  // this will stop Java complaining about the cast
     public SortedArraySet() {
         /*# Copy your code from ArraySet (constructor) here AND change "Object" to "String" */
-        /*# YOUR CODE HERE */
+        this.data = (E[]) new String[10]; //Initialise the array to a size of 10.
+        this.count = 0;
 
     }
 
@@ -54,11 +56,7 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
     /** 
      * @return the number of items in the set  
      */
-    public int size () {
-        /*# Copy your code from ArraySet size() method here */
-        /*# YOUR CODE HERE */
-
-    }
+    public int size () {return this.count;}
 
     /** 
      *  Adds the specified item to this set 
@@ -74,7 +72,20 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
          *  so that the array data remains sorted 
          *  make use of a helper method "findIndexOf" 
          */
-        /*# YOUR CODE HERE */
+        if(item==null){ //If trying to add a null.
+            throw new IllegalArgumentException(); //Throw an exception.
+        }
+        if(!(contains(item))){ //If the array doesn't already contain the element.
+            if (this.count == data.length) { //If the array is full.
+                this.ensureCapacity(); //Double the arrays size.
+            }
+
+            data[this.count] = item; //Add the new item in.
+            this.count++; //Increase the count of populated spaces in the array.
+
+            return true; //Return that the array has changed.
+        }
+        return false; //If the collection hasn't changed, return false.
 
     }
 
@@ -145,8 +156,23 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
     */
     @SuppressWarnings("unchecked")  // stops Java complaining about the call to compare 
     private int findIndexOf(E item) {
-        /*# YOUR CODE HERE */
+        int low=0;
+        int high = this.count-1;
 
+        while (low <=high){
+            int mid = ((low+high)/2);
+            int compare = item.compareTo(data[mid]);
+            if(compare==0){
+                return mid;
+            }
+            if(compare>0){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return low;
     }
 
     // --- Iterator and Comparator --------------------------------------
