@@ -64,21 +64,13 @@ public class ArraySet <E> extends AbstractSet <E> {
      *  @return true if the collection changes, and false if it did not change.
      */
     public boolean add(E item){
-        if(item.equals(null)){ //If trying to add a null.
+        if(item==null){ //If trying to add a null.
             throw new IllegalArgumentException(); //Throw an exception.
         }
-        for(int i=0; i<data.length; i++){
-            if(data[i].equals(item)){ //If the item is already present in the array.
-                return false; //Don't make any changes to the array.
+        if(!(contains(item))){ //If the array doesn't already contain the element.
+            if (this.count == data.length) { //If the array is full.
+                this.ensureCapacity(); //Double the arrays size.
             }
-        }
-        if(this.count==data.length){ //If the array is full.
-            this.ensureCapacity(); //Double the arrays size.
-            data[this.count] = item; //Add the new item in.
-            this.count++; //Increase the count of populated spaces in the array.
-            return true; //Return that the array has changed.
-        }
-        else if(this.count<data.length){ //If there is already space in the array.
             data[this.count] = item; //Add the new item in.
             this.count++; //Increase the count of populated spaces in the array.
             return true; //Return that the array has changed.
