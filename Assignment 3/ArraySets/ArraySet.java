@@ -100,10 +100,10 @@ public class ArraySet <E> extends AbstractSet <E> {
      */
     public boolean remove (Object item) {
         if(!(this.count==0)){
-            for (int i = 0; i < data.length; i++) {
+            for (int i = 0; i < this.count; i++) {
                 if (data[i].equals(item)) { //If the item is found in the array.
-                    data[i] = data[this.count]; //Replace the item with the last element.
-                    data[this.count]=null; //Remove the element that just replaced it.
+                    data[i] = data[this.count-1]; //Replace the item with the last element.
+                    data[this.count-1]=null; //Remove the element that just replaced it.
                     this.count--; //Decrease the amount of populated elements in the array.
                     return true; //Return that the array has changed.
                 }
