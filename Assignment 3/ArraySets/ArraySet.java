@@ -45,7 +45,7 @@ public class ArraySet <E> extends AbstractSet <E> {
 
     @SuppressWarnings("unchecked")  // this will stop Java complaining
     public ArraySet() {
-        this.data = (E[]) new Object[1]; //Initialise the array to a size of 1.
+        this.data = (E[]) new Object[10]; //Initialise the array to a size of 10.
         this.count = 0;
     }
 
@@ -84,7 +84,7 @@ public class ArraySet <E> extends AbstractSet <E> {
      */
     public boolean contains(Object item) { //Return true if the item is found in the array.
         if(!(this.count==0)){
-            for (int i = 0; i < data.length; i++) {
+            for (int i = 0; i < this.count; i++) {
                 if (data[i].equals(item)) {
                     return true;
                 }
@@ -103,6 +103,7 @@ public class ArraySet <E> extends AbstractSet <E> {
             for (int i = 0; i < data.length; i++) {
                 if (data[i].equals(item)) { //If the item is found in the array.
                     data[i] = data[this.count]; //Replace the item with the last element.
+                    data[this.count]=null; //Remove the element that just replaced it.
                     this.count--; //Decrease the amount of populated elements in the array.
                     return true; //Return that the array has changed.
                 }
