@@ -80,13 +80,15 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
                 this.ensureCapacity(); //Double the arrays size.
             }
 
-            data[this.count] = item; //Add the new item in.
-            this.count++; //Increase the count of populated spaces in the array.
+            for(int i=this.findIndexOf(item); i<this.count; i++){
+                data[i+1]=data[i]; //Move all of the elements up to make space.
+            }
+            data[this.findIndexOf(item)] = item; //Add the new item in.
 
+            this.count++; //Increase the count of populated spaces in the array.
             return true; //Return that the array has changed.
         }
         return false; //If the collection hasn't changed, return false.
-
     }
 
     /** 
@@ -101,8 +103,14 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
          *  then potentially modify it to ensure that it works 
          *  with the new version of findIndexOf 
          */
-        /*# YOUR CODE HERE */
-
+        if(!(this.count==0)){
+            for (int i = 0; i < this.count; i++) {
+                if (data[i].equals(itm)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /** 
@@ -114,13 +122,26 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
     public boolean remove (Object item) {
         E itm = (E) item;
 
-        /*# Copy your code from ArraySet remov(Object item) method here
+        /*# Copy your code from ArraySet remove(Object item) method here
          *  then modify it to ensure that 
          *  a) the array data remains sorted after the removal 
          *  b) the code works with the new version of findIndexOf
          */
-        /*# YOUR CODE HERE */
+        if(!(this.count==0)){
+            for (int i = 0; i < this.count; i++) {
+                if (data[i].equals(item)) { //If the item is found in the array.
 
+                    for(int j=(this.findIndexOf(itm)); j<this.count; j++){
+                        data[j]=data[j+1]; //Move all elements after it downwards (staying in order).
+                    }
+                    data[this.count]=null; //Make the final one a null (after rest have moved down).
+
+                    this.count--; //Decrease the amount of populated elements in the array.
+                    return true; //Return that the array has changed.
+                }
+            }
+        }
+        return false; //If the item isn't found, return that no changes to the array have occured.
     }
 
     /** 
@@ -132,7 +153,11 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
     private void ensureCapacity () {
         /*# Copy your code from ArraySet ensureCapacity() method here*/
         /*# you only need to change "Object" to "String" */
-        /*# YOUR CODE HERE */
+        E[] temp = (E[]) new String [data.length*2]; //Double the size of the array.
+        for(int i=0; i<data.length; i++){
+            temp[i]=data[i]; //Copy over the elements.
+        }
+        data = temp; //Set it back to original array with doubled size and original elements remaining.
 
     }
 

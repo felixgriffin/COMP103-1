@@ -2,9 +2,9 @@
 comment0.params=
 comment0.target=void\ initialiseEmptySet()
 comment0.text=initialise\ set\ to\ be\ an\ empty\ set\ before\ each\ test\ is\ run
-comment1.params=n
-comment1.target=void\ fillSet(int)
-comment1.text=method\ to\ initialise\ the\ set\ with\ the\ n\ values\ "v1",\ "v2",\ ...
+comment1.params=
+comment1.target=void\ fillSet()
+comment1.text=method\ to\ initialise\ the\ set
 comment10.params=
 comment10.target=void\ testRemovingItems()
 comment11.params=
