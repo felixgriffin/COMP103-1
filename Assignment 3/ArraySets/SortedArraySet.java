@@ -80,8 +80,8 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
                 this.ensureCapacity(); //Double the arrays size.
             }
 
-            for(int i=this.findIndexOf(item); i<this.count; i++){
-                data[i+1]=data[i]; //Move all of the elements up to make space.
+            for(int i =this.count; i>this.findIndexOf(item); i--){
+                data[i]=data[i-1];
             }
             data[this.findIndexOf(item)] = item; //Add the new item in.
 
@@ -134,8 +134,6 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
                     for(int j=(this.findIndexOf(itm)); j<this.count; j++){
                         data[j]=data[j+1]; //Move all elements after it downwards (staying in order).
                     }
-                    data[this.count]=null; //Make the final one a null (after rest have moved down).
-
                     this.count--; //Decrease the amount of populated elements in the array.
                     return true; //Return that the array has changed.
                 }
