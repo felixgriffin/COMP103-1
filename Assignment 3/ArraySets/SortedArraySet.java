@@ -79,9 +79,10 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
             if (this.count == data.length) { //If the array is full.
                 this.ensureCapacity(); //Double the arrays size.
             }
-
-            for(int i =this.count; i>this.findIndexOf(item); i--){
-                data[i]=data[i-1];
+            if(this.findIndexOf(item)<this.count) {
+                for (int i = this.count; i > this.findIndexOf(item); i--) {
+                    data[i] = data[i - 1];
+                }
             }
             data[this.findIndexOf(item)] = item; //Add the new item in.
 
@@ -131,7 +132,7 @@ public class SortedArraySet <E extends Comparable> extends AbstractSet <E> {
             for (int i = 0; i < this.count; i++) {
                 if (data[i].equals(item)) { //If the item is found in the array.
 
-                    for(int j=(this.findIndexOf(itm)); j<this.count; j++){
+                    for(int j=(this.findIndexOf(itm)); j<this.count-1; j++){
                         data[j]=data[j+1]; //Move all elements after it downwards (staying in order).
                     }
                     this.count--; //Decrease the amount of populated elements in the array.
