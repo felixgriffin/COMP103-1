@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=SpellingChecker
+comment0.text=\ SpellingChecker\ checks\ all\ the\ words\ in\ a\ file\ against\ a\ dictionary.\r\n\ \ The\ dictionary\ is\ read\ from\ the\ dictionary\ file\ into\ a\ set.\r\n\ \ When\ reading\ through\ the\ document\ with\ spelling\ errors,\ the\ program\ checks\r\n\ \ each\ word\ against\ the\ dictionary.\r\n\ \ Any\ word\ that\ is\ not\ in\ the\ dictionary\ is\ considered\ to\ be\ an\ error\ and\r\n\ \ is\ printed\ out.\r\n\r\n\ \ The\ program\ records\ and\ prints\ out\ the\ total\ time\ taken\ to\ read\r\n\ \ all\ the\ words\ into\ the\ dictionary.\r\n\ \ It\ also\ records\ and\ prints\ out\ the\ total\ time\ taken\ to\ check\ all\ the\ words.\r\n\r\n\ \ Note\ that\ the\ dictionary\ and\ the\ file\ to\ check\ are\ assumed\ to\ be\ all\r\n\ \ lowercase,\ with\ all\ punctuation\ removed.\r\n
+comment1.params=arguments
+comment1.target=void\ main(java.lang.String[])
+numComments=2

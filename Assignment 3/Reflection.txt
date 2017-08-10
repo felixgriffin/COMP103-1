@@ -1,7 +1,7 @@
 /* Reflection.txt for COMP103 - 2017T2, Assignment 3
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 For your reflection:
@@ -12,9 +12,20 @@ attempted (core, completion, challenge, and any finer-grained goals, if
 applicable). Please also state how successful you believe you were respectively.
 If there were any problems you got stuck on, what were they? 
 
+I got up to half of the challenge portion. I was able to implement an ArraySet and Sorted 
+ArraySet that passed the unit tests but were not very efficient at all (results in the pdf).
+
+The main problems I had in this assignment were dealing with NullPointers and OutOfBounds Exceptions. Most of the fixes came down to iterating up to this.count instead
+of data.length because it would contain nulls and the occasional change this.count to 
+this.count-1 when referring to data[i+1] in the standard for loop to avoid OutOfBounds
+errors.
+
 The Java collection library provides several different implementations of the
 Set type, including HashSet and TreeSet. Why does it not provide ArraySet?
 After all, Java provides the ArrayList implementation of the List type!
+
+ArraySet isnt provided because its contains check is O(n) complexity whereas the rest
+of the implementations that use Binary Search, etc are more efficient (often log(n)).
 
 --------------------------------------------------------------------
 

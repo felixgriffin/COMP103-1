@@ -26,6 +26,10 @@ import org.junit.runner.JUnitCore;
 
 public class SortedArraySetTest {
 
+    public static void main(String[] args) {
+        new SortedArraySetTest();
+    }
+
     private List<String> items = Arrays.asList("v13","v18","v09","v12","v16","v06","v10","v02","v04","v08","v17","v07","v01","v03","v14","v20","v15","v11","v05","v19");
     private Set<String> set;
 

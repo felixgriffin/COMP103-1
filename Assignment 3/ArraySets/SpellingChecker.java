@@ -34,8 +34,8 @@ public class SpellingChecker{
         UI.println("Reading Dictionary");
         try{
 
-            Scanner dictFile = new Scanner(new File("dictionaryUnsorted.txt"));
-            //Scanner dictFile = new Scanner(new File("dictionarySorted.txt"));
+           // Scanner dictFile = new Scanner(new File("dictionaryUnsorted.txt"));
+            Scanner dictFile = new Scanner(new File("dictionarySorted.txt"));
 
             //load the words from the file into an arraylist, to avoid measuring
             //the file reading time
@@ -46,9 +46,9 @@ public class SpellingChecker{
 
             //measure the set construction
             long start = System.currentTimeMillis();
-            Set<String> dictionary = new ArraySet<String>();
-            // Set<String> dictionary = new SortedArraySet<String>();
-            // Set<String> dictionary = new HashSet<String>();
+           // Set<String> dictionary = new ArraySet<String>();
+            //Set<String> dictionary = new SortedArraySet<String>();
+             Set<String> dictionary = new HashSet<String>();
 
             for (String word : dictWords){
                 dictionary.add(word);
