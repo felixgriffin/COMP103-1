@@ -26,6 +26,5 @@ After all, Java provides the ArrayList implementation of the List type!
 
 ArraySet isnt provided because its contains check is O(n) complexity whereas the rest
 of the implementations that use Binary Search, etc are more efficient (often log(n)).
-
 --------------------------------------------------------------------
 

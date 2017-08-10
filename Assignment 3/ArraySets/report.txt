@@ -1,8 +1,8 @@
 COMP 103 Assignment 3 
 Report on ArraySet and SortedArraySet testing and benchmarking
 
-Name:
-ID:
+Name: Daniel Satur
+ID: 300375193
 
 Testing:
 --------
@@ -10,7 +10,7 @@ Which test methods failed for your implementations?
  
 - ArraySet:
 
-
+N/A
 
 
 
@@ -18,7 +18,7 @@ Which test methods failed for your implementations?
 
 - SortedArraySet:
 
-
+N/A
 
 
 
@@ -36,16 +36,16 @@ Present the results, in the table below.
 Provide times in seconds.
 
 ArraySet                       load | check (seconds)
-    dictionarySorted          ..... | ......  
-    dictionaryUnsorted        ..... | ......
+    dictionarySorted          144.691 | 84.325
+    dictionaryUnsorted        152.772 | 84.068
 
 SortedArraySet                 load | check (seconds)
-    dictionarySorted          ..... | ......  
-    dictionaryUnsorted        ..... | ......
+    dictionarySorted          152.865 | 87.833  
+    dictionaryUnsorted       3754.341 | 519.017
 
 HashSet                        load | check (seconds)
-    dictionarySorted          ..... | ......  
-    dictionaryUnsorted        ..... | ......
+    dictionarySorted          0.194 | 0.197 
+    dictionaryUnsorted        0.217 | 0.220
 
 
 Discussion:
@@ -54,7 +54,17 @@ Discuss the measurements, pointing out any interesting or unexpected results, an
 
 - How can you explain the differences in performance for the various implementations? 
 
+ArraySet was inifficient because the best complexity class it could be in is O(n) so with a large number of elements in the array
+like when parsing a dictionary it becomes very slow. Sorted ArraySet was surprsingly slow and seemed to be O(n!) when 
+parsing the unsorted dictionary which leads me to believe something was very wrong with my implementation even though
+it passed the unit tests.
+
 - How can you explain the differences in performance with respect to the two versions of the dictionary?
+
+There seem to be many inefficiencies with adding elements, sorting and checking it an item is already in the array for Sorted
+ArraySet because the time it took is orders of magnitude more than what it should be. When looking at data that was already sorted
+however I was getting results similar to that of the standard ArraySet which is still much worse than what it should be but it wasn't
+as bad as the unsorted dictionary.
 
 In your answers, make reference to the sub-results for
 "loading the dictionary" and "checking the story".
