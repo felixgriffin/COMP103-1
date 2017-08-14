@@ -153,7 +153,13 @@ public class Images implements Iterable<String>
      * 
      */
     public void addImageAfter(String imageFileName) {
-        cursor.insertAfter(new ImageNode(imageFileName, null));
+        ImageNode before=head;
+        while(before!=null && !before.getFileName().equals(imageFileName)){
+            before=before.getNext();
+        }
+        if(before!=null){
+            before.setNext(new ImageNode(imageFileName, before.getNext()));
+        }
     }
 
     /**
@@ -171,8 +177,15 @@ public class Images implements Iterable<String>
      * 
      */ 
     public void addImageBefore(String imageFileName) {  
-        /*# YOUR CODE HERE */
-
+        ImageNode before = null;
+        ImageNode after = head;
+        while(after != null && !after.getFileName().equals(imageFileName)){
+            before=after;
+            after=after.getNext();
+        }
+        if(after!=null){
+            before.setNext(new ImageNode(imageFileName, after));
+        }
     }
 
     /**
