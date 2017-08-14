@@ -215,10 +215,21 @@ public class Images implements Iterable<String>
      */
 
     public void remove() {
-        ImageNode rest = cursor; //From the cursor
-        while(rest.getNext()!=null){ //If the next node is not a null
-            rest=rest.getNext(); //Set the current node the next node
+        if(head==null){
+            return; //If the list is empty
         }
+
+        if(head.getFileName().equals(cursor.getFileName())){
+            head = head.getNext(); //Handles removing from the very start of the list
+        }
+
+        ImageNode before=null;
+        ImageNode after=head;
+        while(after!=null && !after.getFileName().equals(cursor.getFileName())){
+            before=after;
+            after=after.getNext();
+        }
+        cursor.removeNodeUsingPrevious(before);
     }
 
     /**
