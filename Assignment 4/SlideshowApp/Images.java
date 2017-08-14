@@ -79,8 +79,7 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void moveCursorToStart() {
-
-
+        setCursor(head);
     }
 
     /**
@@ -91,8 +90,10 @@ public class Images implements Iterable<String>
      * HINT: Consider the list could be empty. 
      */
     public void moveCursorToEnd() {
-        /*# YOUR CODE HERE */
-
+        ImageNode rest = cursor; //Start from the cursor
+        while(rest.getNext()!=null){ //If there is another node
+            moveCursorRight(); //Move cursor to the right
+        }
     }
 
     /**
@@ -152,7 +153,7 @@ public class Images implements Iterable<String>
      * 
      */
     public void addImageAfter(String imageFileName) {
-        cursor.setNext(new ImageNode(imageFileName, null));
+        cursor.insertAfter(new ImageNode(imageFileName, null));
     }
 
     /**
@@ -180,8 +181,11 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void removeAll() {
-        setCursor(head);
-        this.remove();
+        ImageNode rest = cursor;
+        while(rest.getNext()!=null) { //While there are objects
+            moveCursorToStart(); //Go to the beginning
+            this.remove(); //Remove it
+        }
     }
 
     /**
@@ -198,10 +202,10 @@ public class Images implements Iterable<String>
      */
 
     public void remove() {
-        ImageNode rest = cursor;
-        while(rest.getNext()!=null){
-            rest=rest.getNext();
-            if(rest.getNext()!=null){
+        ImageNode rest = cursor; //From the cursor
+        while(rest.getNext()!=null){ //If the next node has an object
+            rest=rest.getNext(); //Set the current node to that object
+            if(rest.getNext()!=null){ //Same with the object after that
                 rest.setNext((rest.getNext().getNext()));
             }
         }

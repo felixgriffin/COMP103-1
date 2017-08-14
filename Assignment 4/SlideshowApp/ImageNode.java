@@ -69,6 +69,7 @@ public class ImageNode {
         int count=0;
         while(getNext()!=null){
             count++;
+            getNext();
         }
         return count;
     }
@@ -100,10 +101,7 @@ public class ImageNode {
      *
      */
     public void insertBefore(ImageNode newNode, ImageNode cursor) {
-
-
-
-
+        newNode.insertAfter(nodeBefore(cursor));
     } 
 
     /**
@@ -118,8 +116,7 @@ public class ImageNode {
      * @return the node before the provided node
      */
     public ImageNode nodeBefore(ImageNode target) {
-
-
+        
     }
 
     /**
