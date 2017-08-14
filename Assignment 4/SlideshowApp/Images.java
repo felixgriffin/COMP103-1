@@ -181,9 +181,9 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void removeAll() {
+        moveCursorToStart(); //Put the cursor at the beginning
         ImageNode rest = cursor;
         while(rest.getNext()!=null) { //While there are objects
-            moveCursorToStart(); //Go to the beginning
             this.remove(); //Remove it
         }
     }
@@ -203,11 +203,8 @@ public class Images implements Iterable<String>
 
     public void remove() {
         ImageNode rest = cursor; //From the cursor
-        while(rest.getNext()!=null){ //If the next node has an object
-            rest=rest.getNext(); //Set the current node to that object
-            if(rest.getNext()!=null){ //Same with the object after that
-                rest.setNext((rest.getNext().getNext()));
-            }
+        while(rest.getNext()!=null){ //If the next node is not a null
+            rest=rest.getNext(); //Set the current node the next node
         }
     }
 

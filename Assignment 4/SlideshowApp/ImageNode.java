@@ -69,7 +69,6 @@ public class ImageNode {
         int count=0;
         while(getNext()!=null){
             count++;
-            getNext();
         }
         return count;
     }
@@ -101,7 +100,8 @@ public class ImageNode {
      *
      */
     public void insertBefore(ImageNode newNode, ImageNode cursor) {
-        newNode.insertAfter(nodeBefore(cursor));
+        cursor=nodeBefore(cursor);
+        cursor.setNext(newNode);
     } 
 
     /**
@@ -116,7 +116,13 @@ public class ImageNode {
      * @return the node before the provided node
      */
     public ImageNode nodeBefore(ImageNode target) {
-        
+        ImageNode foundNode=null;
+        while(getNext()!=null){
+            if(getNext().getNext().equals(target)){
+                foundNode=getNext();
+            }
+        }
+        return foundNode;
     }
 
     /**
