@@ -3,9 +3,9 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP103 - 2017T2, Assignment 4
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 import java.util.*;
@@ -79,7 +79,7 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void moveCursorToStart() {
-        /*# YOUR CODE HERE */
+
 
     }
 
@@ -124,7 +124,6 @@ public class Images implements Iterable<String>
         while (previous.getNext() != cursor) {
             previous = previous.getNext();
         }
-
         cursor = previous;
     }
 
@@ -153,8 +152,7 @@ public class Images implements Iterable<String>
      * 
      */
     public void addImageAfter(String imageFileName) {
-        /*# YOUR CODE HERE */
-
+        cursor.setNext(new ImageNode(imageFileName, null));
     }
 
     /**
@@ -181,10 +179,9 @@ public class Images implements Iterable<String>
      *   
      * For the core part of the assignment.
      */
-    public void removeAll()
-    {
-        /*# YOUR CODE HERE */
-
+    public void removeAll() {
+        setCursor(head);
+        this.remove();
     }
 
     /**
@@ -201,8 +198,13 @@ public class Images implements Iterable<String>
      */
 
     public void remove() {
-        /*# YOUR CODE HERE */
-
+        ImageNode rest = cursor;
+        while(rest.getNext()!=null){
+            rest=rest.getNext();
+            if(rest.getNext()!=null){
+                rest.setNext((rest.getNext().getNext()));
+            }
+        }
     }
 
     /**

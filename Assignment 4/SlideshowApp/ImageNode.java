@@ -3,9 +3,9 @@
 // You may not distribute it in any other way without permission.
 
 /* Code for COMP103 - 2017T2, Assignment 4
- * Name:
- * Username:
- * ID:
+ * Name: Daniel Satur
+ * Username: saturdani
+ * ID: 300375193
  */
 
 /**
@@ -66,8 +66,11 @@ public class ImageNode {
      * 
      */
     public int count() {
-        /*# YOUR CODE HERE */
-
+        int count=0;
+        while(getNext()!=null){
+            count++;
+        }
+        return count;
     }
 
     /**
@@ -97,7 +100,9 @@ public class ImageNode {
      *
      */
     public void insertBefore(ImageNode newNode, ImageNode cursor) {
-        /*# YOUR CODE HERE */
+
+
+
 
     } 
 
@@ -113,7 +118,7 @@ public class ImageNode {
      * @return the node before the provided node
      */
     public ImageNode nodeBefore(ImageNode target) {
-        /*# YOUR CODE HERE */
+
 
     }
 
