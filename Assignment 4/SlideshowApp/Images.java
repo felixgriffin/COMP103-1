@@ -90,6 +90,9 @@ public class Images implements Iterable<String>
      * HINT: Consider the list could be empty. 
      */
     public void moveCursorToEnd() {
+        if(head==null){
+            return; //Handles if the list is empty
+        }
         ImageNode rest = cursor; //Start from the cursor
         while(rest.getNext()!=null){ //If there is another node
             moveCursorRight(); //Move cursor to the right
@@ -194,6 +197,9 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void removeAll() {
+        if(head==null){
+            return; //Handles if the list is empty
+        }
         moveCursorToStart(); //Put the cursor at the beginning
         ImageNode rest = cursor;
         while(rest.getNext()!=null) { //While there are objects
@@ -216,11 +222,12 @@ public class Images implements Iterable<String>
 
     public void remove() {
         if(head==null){
-            return; //If the list is empty
+            return; //Handles if the list is empty
         }
 
         if(head.getFileName().equals(cursor.getFileName())){
             head = head.getNext(); //Handles removing from the very start of the list
+            return;
         }
 
         ImageNode before=null;
