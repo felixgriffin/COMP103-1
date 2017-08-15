@@ -229,13 +229,16 @@ public class Images implements Iterable<String>
         if(head==null){
             return; //Handles if the list is empty
         }
-        //ImageNode before=null;
-        ImageNode after=head;
-        while(after.getNext()!=cursor){
-            after=after.getNext();
+        if(head.equals(cursor)){
+            head=null;
+            return;
         }
-        cursor.removeNodeUsingPrevious(after);
-        cursor=after;
+        ImageNode temp=head;
+        while(temp.getNext()!=cursor){
+            temp=temp.getNext();
+        }
+        cursor.removeNodeUsingPrevious(temp);
+        cursor=temp;
     }
 
     /**
