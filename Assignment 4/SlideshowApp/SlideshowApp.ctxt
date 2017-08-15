@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SlideshowApp
+comment0.text=\r\n\ This\ class\ contains\ the\ main\ method\ of\ the\ program.\ \r\n\ \r\n\ A\ SlideshowApp\ object\ represents\ the\ slideshow\ application\ and\ sets\ up\ the\ buttons\ in\ the\ UI.\ \r\n\ It\ also\ creates\ the\ creator\ and\ viewer\ objects.\ \r\n\ \r\n\ These\ creator\ and\ viewer\ objects\ implement\ their\ own\ particular\ behaviour\ as\ to\ how\ to\ respond\ to\ user\ input.\ \r\n\ \r\n\ @author\ Thomas\ Kuehne\r\n
+comment1.params=
+comment1.target=boolean\ slideShowIsRunning()
+comment1.text=\r\n\ Returns\ true,\ if\ there\ is\ an\ active\ slideshow\r\n
+comment2.params=
+comment2.target=SlideshowApp()
+comment2.text=\r\n\ Constructor\ for\ objects\ of\ class\ SlideshowApp\r\n\ One\ collection\ of\ images\ is\ shared\ between\ creator\ and\ viewer.\ \r\n
+comment3.params=
+comment3.target=void\ initialise()
+comment3.text=\r\n\ Initialises\ the\ UI\ window,\ and\ sets\ up\ the\ buttons.\ \r\n
+comment4.params=
+comment4.target=void\ showCreatorUI()
+comment4.text=\r\n\ Activates\ the\ creator\ behaviour\r\n\ \r\n\ Note\ the\ switching\ of\ the\ keylistener\r\n
+comment5.params=
+comment5.target=void\ showViewerUI()
+comment5.text=\r\n\ Activates\ the\ viewer\ behaviour\r\n\r\n\ Note\ the\ switching\ of\ the\ keylistener\r\n
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7
