@@ -119,10 +119,8 @@ public class ImageNode {
      */
     public ImageNode nodeBefore(ImageNode target) {
         ImageNode foundNode=null;
-        while(getNext()!=null){
-            if(getNext().getNext().equals(target)){
-                foundNode=getNext();
-            }
+        while(getNext()!=target){
+            foundNode = getNext();
         }
         return foundNode;
     }

@@ -206,8 +206,8 @@ public class Images implements Iterable<String>
             return; //Handles if the list is empty
         }
         moveCursorToStart(); //Put the cursor at the beginning
-        ImageNode rest = cursor;
-        while(rest.getNext()!=null) { //While there are objects
+        ImageNode temp = head;
+        while(temp.getNext()!=null) { //While there are objects
             this.remove(); //Remove it
         }
     }
@@ -226,19 +226,28 @@ public class Images implements Iterable<String>
      */
 
     public void remove() {
-        if(head==null){
-            return; //Handles if the list is empty
+        if(head==null){ //If the LinkedList is empty
+            return; //Don't bother
         }
-        if(head.equals(cursor)){
-            head=null;
-            return;
+
+        ImageNode temp1=head;
+        if(temp1.equals(cursor)){ //If it is the first node in the list
+            if(temp1.getNext()!=null){ //If there are still nodes after it
+                head=temp1.getNext(); //Move the head forward
+                cursor=head; //Move the cursor forward
+            }
+            else{ //If it is the ONLY node in the list
+                head=null; //Set it to null
+            }
+            return; //Quit the method
         }
-        ImageNode temp=head;
-        while(temp.getNext()!=cursor){
-            temp=temp.getNext();
+
+        ImageNode temp2=head;
+        while(temp2.getNext()!=cursor){ //When we get to the node before the cursor
+            temp2=temp2.getNext();
         }
-        cursor.removeNodeUsingPrevious(temp);
-        cursor=temp;
+        cursor.removeNodeUsingPrevious(temp2); //Remove the node at the cursor
+        cursor=temp2; //Move the cursor back
     }
 
     /**
