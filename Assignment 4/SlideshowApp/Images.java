@@ -205,11 +205,7 @@ public class Images implements Iterable<String>
         if(head==null){
             return; //Handles if the list is empty
         }
-        moveCursorToStart(); //Put the cursor at the beginning
-        ImageNode temp = head;
-        while(temp.getNext()!=null) { //While there are objects
-            this.remove(); //Remove it
-        }
+        head=null;
     }
 
     /**
