@@ -160,6 +160,10 @@ public class Images implements Iterable<String>
             head = newNode;
             cursor=head;
         }
+        else{
+            cursor.insertAfter(new ImageNode(imageFileName, null));
+            cursor = cursor.getNext();
+        }
 
         } //Set the node after cursor to a new node
 
@@ -178,7 +182,8 @@ public class Images implements Iterable<String>
      * HINT: Pay attention to the cursor position after the image has been added. 
      * 
      */ 
-    public void addImageBefore(String imageFileName) {  
+    public void addImageBefore(String imageFileName) {
+        /*
         ImageNode before = null;
         ImageNode after = head;
         while(after != null && !after.getFileName().equals(imageFileName)){
@@ -188,6 +193,7 @@ public class Images implements Iterable<String>
         if(after!=null){
             before.setNext(new ImageNode(imageFileName, after));
         }
+        */
     }
 
     /**
@@ -223,19 +229,13 @@ public class Images implements Iterable<String>
         if(head==null){
             return; //Handles if the list is empty
         }
-
-        if(head.getFileName().equals(cursor.getFileName())){
-            head = head.getNext(); //Handles removing from the very start of the list
-            return;
-        }
-
-        ImageNode before=null;
+        //ImageNode before=null;
         ImageNode after=head;
-        while(after!=null && !after.getFileName().equals(cursor.getFileName())){
-            before=after;
+        while(after.getNext()!=cursor){
             after=after.getNext();
         }
-        cursor.removeNodeUsingPrevious(before);
+        cursor.removeNodeUsingPrevious(after);
+        cursor=after;
     }
 
     /**
