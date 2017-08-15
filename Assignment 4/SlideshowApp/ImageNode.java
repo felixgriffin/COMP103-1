@@ -67,8 +67,10 @@ public class ImageNode {
      */
     public int count() {
         int count=0;
-        while(getNext()!=null){
+        ImageNode temp = this;
+        while(temp!=null){
             count++;
+            temp = temp.next;
         }
         return count;
     }

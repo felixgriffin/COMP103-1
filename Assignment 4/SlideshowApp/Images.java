@@ -79,7 +79,7 @@ public class Images implements Iterable<String>
      * For the core part of the assignment.
      */
     public void moveCursorToStart() {
-        setCursor(head);
+        cursor = head;
     }
 
     /**
@@ -93,8 +93,7 @@ public class Images implements Iterable<String>
         if(head==null){
             return; //Handles if the list is empty
         }
-        ImageNode rest = cursor; //Start from the cursor
-        while(rest.getNext()!=null){ //If there is another node
+        while(cursor.getNext()!=null){ //If there is another node
             moveCursorRight(); //Move cursor to the right
         }
     }
@@ -156,14 +155,14 @@ public class Images implements Iterable<String>
      * 
      */
     public void addImageAfter(String imageFileName) {
-        ImageNode before=head;
-        while(before!=null && !before.getFileName().equals(imageFileName)){
-            before=before.getNext();
+        if(head==null){
+            ImageNode newNode = new ImageNode(imageFileName, null);
+            head = newNode;
+            cursor=head;
         }
-        if(before!=null){
-            before.setNext(new ImageNode(imageFileName, before.getNext()));
-        }
-    }
+
+        } //Set the node after cursor to a new node
+
 
     /**
      * Adds an image before the cursor position
