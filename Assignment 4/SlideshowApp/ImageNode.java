@@ -70,7 +70,7 @@ public class ImageNode {
         ImageNode temp = this;
         while(temp!=null){
             count++;
-            temp = temp.next;
+            temp = temp.getNext();
         }
         return count;
     }
