@@ -52,7 +52,6 @@ public class Images implements Iterable<String>
         // deal with an inappropriate call gracefully
         if (cursor == null)
             return "";  // the correct response would be to throw an exception.
-
         return cursor.getFileName();
     }
 
@@ -82,7 +81,7 @@ public class Images implements Iterable<String>
      */
     public void moveCursorToStart() {
         cursor = head;
-    }
+    } //Move cursor to first node
 
     /**
      * Positions the cursor at the end
@@ -93,7 +92,7 @@ public class Images implements Iterable<String>
      */
     public void moveCursorToEnd() {
         if(head==null){
-            return; //Handles if the list is empty
+            return; //Quit if the list is empty
         }
         while(cursor.getNext()!=null){ //If there is another node
             moveCursorRight(); //Move cursor to the right
@@ -107,7 +106,6 @@ public class Images implements Iterable<String>
         // is it impossible for the cursor to move right?
         if (cursor == null  ||  cursor.getNext() == null)
             return;
-
         // advance the cursor
         cursor = cursor.getNext();
     }
@@ -121,10 +119,8 @@ public class Images implements Iterable<String>
         // is it impossible for the cursor to move left?
         if (head == null || cursor == head)
             return;
-
         // setup an initial attempt to a reference to the node before the current cursor 
         ImageNode previous = head;
-
         // while the node before the cursor has not been found yet, keep advancing
         while (previous.getNext() != cursor) {
             previous = previous.getNext();
@@ -140,7 +136,6 @@ public class Images implements Iterable<String>
     public int count() {
         if (head == null)          // is the list empty?
             return 0;                // yes -> return zero
-
         return head.count();   // no -> delegate to linked structure
     }
 
@@ -157,17 +152,16 @@ public class Images implements Iterable<String>
      * 
      */
     public void addImageAfter(String imageFileName) {
-        if(head==null){
-            ImageNode newNode = new ImageNode(imageFileName, null);
-            head = newNode;
-            cursor=head;
+        if(head==null){ //If the list is empty
+            ImageNode newNode = new ImageNode(imageFileName, null); //Make the first node
+            head = newNode; //Store the first node in the head field
+            cursor=head; //Move the cursor to the first node
         }
-        else{
-            cursor.insertAfter(new ImageNode(imageFileName, null));
-            cursor = cursor.getNext();
+        else{ //In the case that the list isnt empty
+            cursor.insertAfter(new ImageNode(imageFileName, null)); //Put the node after the current node
+            cursor = cursor.getNext(); //Move up the cursor to the new node
         }
-
-        } //Set the node after cursor to a new node
+    }
 
 
     /**
@@ -185,12 +179,12 @@ public class Images implements Iterable<String>
      * 
      */ 
     public void addImageBefore(String imageFileName) {
-        if(head==null){
+        if(head==null){ //Deal with empty lists in the same way as addImageAfter
             ImageNode newNode = new ImageNode(imageFileName, null);
-            head = newNode;
+            head = newNode; //
             cursor=head;
         }
-        else{
+        else{ //If list isn't empty use the insertBefore method to place it before the cursor
             cursor.insertBefore(new ImageNode(imageFileName, cursor.getNext()), cursor);
         }
     }
@@ -202,9 +196,9 @@ public class Images implements Iterable<String>
      */
     public void removeAll() {
         if(head==null){
-            return; //Handles if the list is empty
+            return; //Quit if the list is empty
         }
-        head=null;
+        head=null; //Set the start of the list to null, removing the rest of the items automatically
     }
 
     /**
@@ -221,22 +215,20 @@ public class Images implements Iterable<String>
      */
 
     public void remove() {
-        if(head==null){ //If the LinkedList is empty
-            return; //Don't bother
+        if(head==null){
+            return; //Quit if list is empty
         }
-
         ImageNode temp1=head;
         if(temp1.equals(cursor)){ //If it is the first node in the list
             if(temp1.getNext()!=null){ //If there are still nodes after it
-                head=temp1.getNext(); //Move the head forward
+                head=temp1.getNext(); //The first node is now the one after what it used to be
                 cursor=head; //Move the cursor forward
             }
             else{ //If it is the ONLY node in the list
                 head=null; //Set it to null
             }
-            return; //Quit the method
+            return;
         }
-
         ImageNode temp2=head;
         while(temp2.getNext()!=cursor){ //When we get to the node before the cursor
             temp2=temp2.getNext();
@@ -256,10 +248,17 @@ public class Images implements Iterable<String>
      * HINT: Don't forget to update the head of the list.
      */
     public void reverseImages() {
+        if(head==null){
+            return; //Quit if the list is empty
+        }
+        if(head.getNext()==null){
+            return; //Quit if there is only 1 item in the list
+        }
         ImageNode temp = head;
-        while(temp!=null) {
-            this.addImageAfter(temp.getFileName());
-            temp = temp.getNext();
+        head=null;
+        while(temp!=null) { //While there are items in the list
+            this.addImageBefore(head.getFileName()); //Add the items back, going to the left
+            moveCursorLeft(); //Move the cursor back
         }
     }
 
@@ -270,7 +269,7 @@ public class Images implements Iterable<String>
      * 
      */
     public Iterator <String> iterator() {
-        return new ImagesIterator(this);
+        return new ImagesIterator(this); //Return a new iterator object
     }
 
     /** 
@@ -301,12 +300,12 @@ public class Images implements Iterable<String>
          */
         public boolean hasNext() {
             if(this.list==null){
-                return false;
+                return false; //Return false if the list is empty
             }
             if(this.list.getCursor().getNext()!=null){
-                return true;
+                return true; //Return true if there is a node after the current one
             }
-            return false; // to make this class compile. PLEASE FIX THIS LINE
+            return false;
         }
 
         /** 
@@ -318,9 +317,10 @@ public class Images implements Iterable<String>
          * @return next item in the set
          */
         public String next() {
-             if(hasNext()){
-                 this.index++;
-                 return this.list.getCursor().getNext().getFileName();
+             if(hasNext()){ //If there is another node to return
+                 this.index++; //Move up the current index
+                 return this.list.getCursor().getNext().getFileName(); //Return the node after the node at
+                                                                        //the cursor
              }
             return null;
         }

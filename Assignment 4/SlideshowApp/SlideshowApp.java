@@ -24,7 +24,7 @@ public class SlideshowApp
 {
     // boolean field that should be toggled depending on whether 
     // you attempted the completion stage or not.
-    public final static boolean completion = true;
+    public final static boolean completion = false;
 
     private Images images;             // A shared reference to a linked list of images. 
 
