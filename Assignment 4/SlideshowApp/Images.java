@@ -256,8 +256,11 @@ public class Images implements Iterable<String>
      * HINT: Don't forget to update the head of the list.
      */
     public void reverseImages() {
-        /*# YOUR CODE HERE */   
-
+        ImageNode temp = head;
+        while(temp!=null) {
+            this.addImageAfter(temp.getFileName());
+            temp = temp.getNext();
+        }
     }
 
     /** 
