@@ -8,6 +8,8 @@
  * ID: 300375193
  */
 
+import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
+
 import java.util.*;
 
 /**
@@ -30,8 +32,8 @@ import java.util.*;
 
 public class Images implements Iterable<String>
 {
-    private ImageNode head;     // the first image node
-    private ImageNode cursor;   // the current point for insertion, removal, etc. 
+    public ImageNode head;     // the first image node
+    public ImageNode cursor;   // the current point for insertion, removal, etc.
 
     /**
      * Creates an empty list of images.
@@ -183,17 +185,14 @@ public class Images implements Iterable<String>
      * 
      */ 
     public void addImageBefore(String imageFileName) {
-        /*
-        ImageNode before = null;
-        ImageNode after = head;
-        while(after != null && !after.getFileName().equals(imageFileName)){
-            before=after;
-            after=after.getNext();
+        if(head==null){
+            ImageNode newNode = new ImageNode(imageFileName, null);
+            head = newNode;
+            cursor=head;
         }
-        if(after!=null){
-            before.setNext(new ImageNode(imageFileName, after));
+        else{
+            cursor.insertBefore(new ImageNode(imageFileName, cursor.getNext()), cursor);
         }
-        */
     }
 
     /**
@@ -268,9 +267,7 @@ public class Images implements Iterable<String>
      * 
      */
     public Iterator <String> iterator() {
-        /*# YOUR CODE HERE */   
-
-        return null; // to make this class compile. PLEASE FIX THIS LINE
+        return new ImagesIterator(this);
     }
 
     /** 
@@ -284,12 +281,13 @@ public class Images implements Iterable<String>
         // needs fields, constructor, hasNext(), next(), and remove()
 
         // fields
-        /*# YOUR CODE HERE */   
+        public Images list;
+        public int nextIndex;
 
         // constructor
         private ImagesIterator(Images images) {
-            /*# YOUR CODE HERE */   
-
+            this.list=images;
+            nextIndex=0;
         }
 
         /**
@@ -299,8 +297,9 @@ public class Images implements Iterable<String>
          * 
          */
         public boolean hasNext() {
-            /*# YOUR CODE HERE */   
-
+            if(this.list.getCursor().getNext()!=null){
+                return true;
+            }
             return false; // to make this class compile. PLEASE FIX THIS LINE
         }
 
@@ -313,8 +312,9 @@ public class Images implements Iterable<String>
          * @return next item in the set
          */
         public String next() {
-            /*# YOUR CODE HERE */   
-
+             if(hasNext()){
+                 return this.list.getCursor().getNext().getFileName();
+             }
             return null; // to make this class compile. PLEASE FIX THIS LINE
         }
 

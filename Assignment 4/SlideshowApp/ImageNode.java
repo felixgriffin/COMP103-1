@@ -102,6 +102,9 @@ public class ImageNode {
      *
      */
     public void insertBefore(ImageNode newNode, ImageNode cursor) {
+        if(this==null){
+            return;
+        }
         cursor=nodeBefore(cursor);
         cursor.setNext(newNode);
     } 
@@ -118,11 +121,14 @@ public class ImageNode {
      * @return the node before the provided node
      */
     public ImageNode nodeBefore(ImageNode target) {
-        ImageNode foundNode=null;
-        while(getNext()!=target){
-            foundNode = getNext();
+        if(this==null){
+            return null;
         }
-        return foundNode;
+        ImageNode temp = this;
+        while(this.getNext()!=target){
+            temp.setNext(temp.getNext());
+        }
+        return temp;
     }
 
     /**
