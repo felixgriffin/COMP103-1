@@ -284,12 +284,12 @@ public class Images implements Iterable<String>
 
         // fields
         public Images list;
-        public int index;
+        public int nextIndex;
 
         // constructor
         private ImagesIterator(Images images) {
             this.list=images;
-            index=0;
+            nextIndex=0;
         }
 
         /**
@@ -299,13 +299,7 @@ public class Images implements Iterable<String>
          * 
          */
         public boolean hasNext() {
-            if(this.list==null){
-                return false; //Return false if the list is empty
-            }
-            if(this.list.getCursor().getNext()!=null){
-                return true; //Return true if there is a node after the current one
-            }
-            return false;
+            return (nextIndex<list.count());
         }
 
         /** 
@@ -317,12 +311,11 @@ public class Images implements Iterable<String>
          * @return next item in the set
          */
         public String next() {
-             if(hasNext()){ //If there is another node to return
-                 this.index++; //Move up the current index
-                 return this.list.getCursor().getNext().getFileName(); //Return the node after the node at
-                                                                        //the cursor
+             if(nextIndex >= list.count()){
+                 throw new NoSuchElementException();
              }
-            return null;
+             nextIndex++;
+             return list.getImageFileNameAtCursor();
         }
 
         /** 

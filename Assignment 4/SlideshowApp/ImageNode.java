@@ -82,7 +82,7 @@ public class ImageNode {
      * 
      */
     public void insertAfter(ImageNode newNode) {
-        newNode.setNext(this.getNext()); //Make sure the new node points to what comes after the current node
+        newNode.setNext(this.getNext()); //Make sure the new node points to what comes after the current cursor node
         this.setNext(newNode); //Place the node after the current one
     }
 
