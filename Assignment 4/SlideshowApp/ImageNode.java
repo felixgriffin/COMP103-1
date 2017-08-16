@@ -68,9 +68,9 @@ public class ImageNode {
     public int count() {
         int count=0;
         ImageNode temp = this;
-        while(temp!=null){
-            count++;
-            temp = temp.getNext();
+        while(temp!=null){ //If there is another node in the list
+            count++; //Increase the count
+            temp = temp.getNext(); //Move the "cursor" forward
         }
         return count;
     }
@@ -82,8 +82,8 @@ public class ImageNode {
      * 
      */
     public void insertAfter(ImageNode newNode) {
-        newNode.setNext(this.getNext());
-        this.setNext(newNode);
+        newNode.setNext(this.getNext()); //Make sure the new node points to what comes after the current node
+        this.setNext(newNode); //Place the node after the current one
     }
 
     /**
@@ -103,10 +103,10 @@ public class ImageNode {
      */
     public void insertBefore(ImageNode newNode, ImageNode cursor) {
         if(this==null){
-            return;
+            insertAfter(newNode); //If the list is empty, just put it in
         }
-        cursor=nodeBefore(cursor);
-        cursor.setNext(newNode);
+        cursor=nodeBefore(cursor); //Find the node before the current node at the cursor
+        cursor.setNext(newNode); //Place the new node between the cursor and the node before it
     } 
 
     /**
@@ -122,11 +122,11 @@ public class ImageNode {
      */
     public ImageNode nodeBefore(ImageNode target) {
         if(this==null){
-            return null;
+            return null; //Quit if the list is empty
         }
         ImageNode temp = this;
         while(this.getNext()!=target){
-            temp.setNext(temp.getNext());
+            temp.setNext(temp.getNext()); //Quit when you find the node before the cursor.
         }
         return temp;
     }
